@@ -1,53 +1,25 @@
-# OMNIFRAME Personality Review
+# OMNIFRAME Personality Bingo — Mobile v1.1
 
-This repository hosts the standalone OMNIFRAME Personality Bingo application.
+A phone-first GitHub Pages build of the OMNIFRAME personality review application.
 
-## Deploy with GitHub Pages
+## Replace the old site
 
-1. Create a new GitHub repository.
-2. Extract this ZIP.
-3. Upload **all extracted files and folders** to the root of the repository.
-4. Commit the files to the `main` branch.
-5. Open the repository's **Settings**.
-6. Open **Pages**.
-7. Under **Build and deployment**, select:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/ (root)`
-8. Click **Save**.
-9. Open the GitHub Pages address GitHub provides.
+1. Extract this ZIP.
+2. Open your existing GitHub repository.
+3. Delete or replace the old `index.html`.
+4. Upload every file from this extracted folder to the repository root.
+5. Commit the changes to `main`.
+6. GitHub Pages will redeploy automatically.
 
-The page will normally be available at:
+## Phone controls
 
-`https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/`
-
-## Phone usage
-
-- Open the GitHub Pages address in the same browser each time.
-- Do not use private/incognito mode.
-- Do not clear browser website data during the review.
-- Keep the repository name and Pages URL unchanged.
-- Export a **Full review backup** regularly.
-
-The app stores progress in the browser's local storage. Progress does not automatically sync back to GitHub.
-
-## Files to return to ChatGPT
-
-When you are ready, use the application's **Save & export** page and download:
-
-- `OmniFrame-culled-personality-YYYY-MM-DD.json`
-- `OmniFrame-rejections-YYYY-MM-DD.json`
-- `OmniFrame-personality-review-YYYY-MM-DD.json` — recommended full backup
-
-Upload those files back into the chat so the final OMNIFRAME personality bible and implementation package can be produced.
-
-## Repository contents
-
-- `index.html` — the complete offline-capable personality review application
-- `.nojekyll` — prevents GitHub Pages from processing the app through Jekyll
-- `references/OmniFrame-Avatar-Media-Prompts-v2.txt` — current avatar and media prompt pack
-- `references/OmniFrame-Media-Bible-v1-ARCHIVE.md` — earlier human-body media concept, retained only as an archive
+- The review page defaults to one undecided card at a time.
+- Use the fixed bottom buttons for Disapprove, Later, and Approve.
+- Use the fixed navigation bar for Avatar, Review, Add, and Export.
+- Tap `Filters, progress & batch tools` to open advanced filters.
+- Decisions remain in browser local storage.
+- Export a Full Review Backup regularly.
 
 ## Important
 
-The current visual canon is the persistent 3D avatar defined inside `index.html` and the v2 prompt file. The archived Markdown file should not replace that newer avatar direction.
+Use the same GitHub Pages URL and the same non-private browser. Replacing the site files at the same URL should preserve existing browser progress.
