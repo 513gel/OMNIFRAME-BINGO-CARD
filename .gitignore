@@ -1,0 +1,6 @@
+Thumbs.db
+.DS_Store
+OmniFrame-personality-review-*.json
+OmniFrame-culled-personality-*.json
+OmniFrame-rejections-*.json
+OmniFrame-personality-report-*.md

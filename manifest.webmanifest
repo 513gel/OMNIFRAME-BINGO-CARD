@@ -1,0 +1,66 @@
+{
+  "id": "./",
+  "name": "OMNIFRAME Personality Review v1.3",
+  "short_name": "OMNIFRAME",
+  "description": "Randomized one-by-one personality review with clear decision descriptions, saved notes and offline export.",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#090a0c",
+  "theme_color": "#0e1116",
+  "orientation": "portrait-primary",
+  "categories": [
+    "productivity",
+    "utilities",
+    "personalization"
+  ],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Review cards",
+      "short_name": "Review",
+      "url": "./?tab=review",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Export results",
+      "short_name": "Export",
+      "url": "./?tab=export",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

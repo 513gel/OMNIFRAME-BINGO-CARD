@@ -2,8 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OMNIFRAME Personality Bingo Mobile</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0e1116">
+<meta name="application-name" content="OMNIFRAME Personality">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OMNIFRAME">
+<meta name="mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png">
+<script>
+(function(){
+  const ua = navigator.userAgent || "";
+  const touch = matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0;
+  const phoneUA = /Android|iPhone|iPod|Mobile/i.test(ua);
+  const narrow = Math.min(screen.width || innerWidth, innerWidth || screen.width) < 1100;
+  if (touch || phoneUA || narrow) document.documentElement.classList.add("mobile-ui");
+})();
+</script>
+
+<title>OMNIFRAME Personality Review</title>
 <style>
 :root{
   color-scheme:dark;
@@ -434,6 +455,336 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
  .mobile-review-dock button{font-size:10px}
 }
 
+
+.mobile-quick-actions{display:none}
+
+/* v1.2: the phone layout is forced by touch/device detection, not only viewport width. */
+html.mobile-ui{font-size:16px;-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
+html.mobile-ui body{
+ font-size:17px;line-height:1.58;
+ padding-bottom:calc(70px + env(safe-area-inset-bottom));
+ overflow-x:hidden
+}
+html.mobile-ui header{height:56px}
+html.mobile-ui .header-inner{min-height:56px;height:56px;padding:7px 10px;align-items:center}
+html.mobile-ui .header-actions{display:none!important}
+html.mobile-ui .brand{min-width:0;max-width:100%}
+html.mobile-ui .brand h1{
+ font-size:13px;line-height:1.15;letter-spacing:.035em;
+ max-width:76vw;overflow:hidden;text-overflow:ellipsis
+}
+html.mobile-ui .brand .sub{font-size:10px;max-width:76vw;overflow:hidden;text-overflow:ellipsis}
+html.mobile-ui .logo{width:36px;height:36px}
+html.mobile-ui main{width:100%;max-width:none;padding:9px 9px calc(82px + env(safe-area-inset-bottom))}
+html.mobile-ui .hero{padding:14px;border-radius:14px;margin:0 0 9px}
+html.mobile-ui body:not(.tab-avatar) .hero{display:none!important}
+html.mobile-ui .hero-grid{display:block!important}
+html.mobile-ui .hero h2{font-size:25px;line-height:1.12;margin-bottom:10px}
+html.mobile-ui .hero p{font-size:15px;line-height:1.58}
+html.mobile-ui .locked{margin-top:12px}
+html.mobile-ui .mobile-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0 12px}
+html.mobile-ui .tabs{display:none!important}
+html.mobile-ui .panel{width:100%}
+html.mobile-ui .section-title{display:block;margin:13px 2px 8px}
+html.mobile-ui .section-title h2{font-size:22px;line-height:1.18}
+html.mobile-ui .section-title p{font-size:14px}
+html.mobile-ui .copy-block{max-height:55dvh;padding:13px;font-size:15px;line-height:1.58}
+html.mobile-ui .copy-button{min-height:48px;font-size:15px}
+html.mobile-ui .prompt-grid,
+html.mobile-ui .custom-grid,
+html.mobile-ui .export-grid,
+html.mobile-ui .consumable-grid{display:grid!important;grid-template-columns:1fr!important}
+html.mobile-ui .prompt-card,
+html.mobile-ui .export-card,
+html.mobile-ui .card.pad{padding:15px}
+html.mobile-ui .prompt-card h3,
+html.mobile-ui .export-card h3{font-size:20px}
+html.mobile-ui .prompt-body{font-size:15px;line-height:1.58;max-height:52dvh}
+html.mobile-ui button,
+html.mobile-ui input,
+html.mobile-ui select,
+html.mobile-ui textarea{
+ min-height:48px;font-size:16px;border-radius:10px;touch-action:manipulation
+}
+html.mobile-ui textarea{line-height:1.5}
+html.mobile-ui .toolbar{
+ position:sticky;top:57px;z-index:18;
+ margin:0 0 8px;padding:6px;border-radius:12px;max-width:100%
+}
+html.mobile-ui .mobile-filter-toggle{
+ display:block!important;width:100%;min-height:48px;
+ font-size:15px;text-align:left;padding:10px 12px;
+ background:#22191b;border-color:#693237
+}
+html.mobile-ui .toolbar>.toolbar-row,
+html.mobile-ui .toolbar>.stats,
+html.mobile-ui .toolbar>.progress{display:none!important}
+html.mobile-ui .toolbar.mobile-open>.toolbar-row{display:flex!important}
+html.mobile-ui .toolbar.mobile-open>.stats{display:grid!important}
+html.mobile-ui .toolbar.mobile-open>.progress{display:block!important}
+html.mobile-ui .toolbar.mobile-open{max-height:75dvh;overflow:auto;overscroll-behavior:contain}
+html.mobile-ui .toolbar-row{flex-direction:column;align-items:stretch;gap:7px;padding-top:7px}
+html.mobile-ui .toolbar-row>*{width:100%!important;min-width:0!important;flex:none!important}
+html.mobile-ui .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:7px 0}
+html.mobile-ui .stat{padding:9px}
+html.mobile-ui .stat b{font-size:19px}
+html.mobile-ui .stat span{font-size:11px}
+html.mobile-ui .review-grid{display:block!important;min-height:calc(100dvh - 224px)}
+html.mobile-ui .review-grid>.review-card:not(:first-child){display:none!important}
+html.mobile-ui .review-card{
+ width:100%;margin:0;min-height:calc(100dvh - 236px);
+ padding:17px 16px 20px;border-radius:15px;
+ display:flex;flex-direction:column;
+ box-shadow:0 13px 34px rgba(0,0,0,.38)
+}
+html.mobile-ui .review-head h3{font-size:22px;line-height:1.26;margin-top:4px}
+html.mobile-ui .review-head .meta{font-size:10px;line-height:1.35}
+html.mobile-ui .index{font-size:9px}
+html.mobile-ui .desc{font-size:17px;line-height:1.62;min-height:0;margin:15px 0 12px}
+html.mobile-ui .chips{gap:6px;margin:7px 0 13px}
+html.mobile-ui .chip{font-size:12px;padding:5px 8px}
+html.mobile-ui .review-card>.card-actions{display:none!important}
+html.mobile-ui .details{margin-top:auto;padding-top:11px}
+html.mobile-ui .details summary{
+ min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:750
+}
+html.mobile-ui .weight-grid{grid-template-columns:1fr!important}
+html.mobile-ui .weight{padding:10px}
+html.mobile-ui .note-input{font-size:16px;min-height:120px}
+html.mobile-ui .pagination{display:flex;margin:8px 0 92px;gap:6px}
+html.mobile-ui .pagination button{min-height:48px;flex:1}
+html.mobile-ui #pageLabel{font-size:12px;text-align:center;min-width:96px}
+html.mobile-ui .mobile-review-dock{
+ left:7px;right:7px;bottom:calc(70px + 7px + env(safe-area-inset-bottom));
+ height:82px;padding:7px;gap:6px;border-radius:16px
+}
+html.mobile-ui body.review-active .mobile-review-dock{
+ display:grid!important;grid-template-columns:1fr .72fr 1fr
+}
+html.mobile-ui .mobile-review-dock button{min-height:66px;border-radius:12px;font-size:12px;padding:5px 3px}
+html.mobile-ui .dock-icon{font-size:29px}
+html.mobile-ui .mobile-bottom-nav{
+ display:grid!important;grid-template-columns:repeat(5,1fr);
+ height:calc(70px + env(safe-area-inset-bottom));
+ padding:5px 4px env(safe-area-inset-bottom)
+}
+html.mobile-ui .mobile-bottom-nav button{min-height:58px;padding:3px 1px;border-radius:10px}
+html.mobile-ui .mobile-bottom-nav button span{font-size:21px}
+html.mobile-ui .mobile-bottom-nav button small{font-size:9px}
+html.mobile-ui .custom-item{grid-template-columns:1fr!important}
+html.mobile-ui .custom-item button{width:100%}
+html.mobile-ui .export-card button{width:100%;min-height:52px}
+html.mobile-ui .toast{
+ left:8px;right:8px;bottom:calc(78px + env(safe-area-inset-bottom));
+ text-align:center;font-size:14px
+}
+html.mobile-ui body.review-active .toast{bottom:calc(164px + env(safe-area-inset-bottom))}
+html.mobile-ui dialog{max-height:86dvh}
+html.mobile-ui .footer-note{padding-bottom:10px}
+
+
+/* v1.3 decision clarity and randomized queue */
+.decision-question{
+ margin:12px 0 10px;
+ padding:12px 13px;
+ border:1px solid #4a4240;
+ background:linear-gradient(145deg,rgba(223,212,187,.065),rgba(17,19,24,.5));
+ border-radius:10px;
+}
+.decision-question .question-label{
+ display:block;
+ margin-bottom:4px;
+ color:var(--ivory);
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:.12em;
+ text-transform:uppercase;
+}
+.decision-question strong{
+ display:block;
+ font-size:16px;
+ line-height:1.42;
+}
+.decision-guide-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ margin:8px 0;
+}
+.decision-guide{
+ border:1px solid var(--line);
+ border-radius:9px;
+ padding:10px;
+ background:#0d1014;
+}
+.decision-guide.approve-guide{border-color:#315e43}
+.decision-guide.reject-guide{border-color:#653236}
+.decision-guide b{
+ display:block;
+ margin-bottom:4px;
+ font-size:12px;
+}
+.decision-guide p{
+ margin:0;
+ color:#c5c4bd;
+ font-size:12px;
+ line-height:1.5;
+}
+.decision-effect{
+ margin:8px 0 12px;
+ padding:10px 11px;
+ border-left:3px solid var(--amber);
+ background:#15130f;
+ border-radius:0 8px 8px 0;
+ color:#d0ccc0;
+ font-size:12px;
+ line-height:1.52;
+}
+.quick-note-wrap{
+ margin:12px 0 11px;
+ padding:11px;
+ border:1px solid #454b55;
+ background:#0c0f13;
+ border-radius:10px;
+}
+.quick-note-wrap label{
+ display:block;
+ color:var(--ivory);
+ font-size:13px;
+ font-weight:800;
+ margin-bottom:4px;
+}
+.quick-note-help{
+ display:block;
+ color:var(--muted);
+ font-size:11px;
+ line-height:1.42;
+ margin-bottom:7px;
+}
+.quick-note-input{
+ width:100%;
+ min-height:92px;
+ resize:vertical;
+ padding:10px;
+}
+.queue-status{
+ display:flex;
+ justify-content:space-between;
+ gap:8px;
+ margin:0 0 8px;
+ color:var(--muted);
+ font-size:11px;
+}
+.review-complete{
+ padding:32px 18px;
+ text-align:center;
+}
+.review-complete h2{margin:0 0 8px;font-size:25px}
+.review-complete p{color:var(--muted)}
+.review-complete .complete-actions{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ max-width:520px;
+ margin:16px auto 0;
+}
+.mobile-progress-strip{display:none}
+
+html.mobile-ui .decision-question{
+ margin:10px 0 9px;
+ padding:13px;
+}
+html.mobile-ui .decision-question strong{
+ font-size:18px;
+ line-height:1.42;
+}
+html.mobile-ui .decision-guide-grid{
+ grid-template-columns:1fr;
+ gap:7px;
+}
+html.mobile-ui .decision-guide{padding:11px}
+html.mobile-ui .decision-guide b{font-size:14px}
+html.mobile-ui .decision-guide p,
+html.mobile-ui .decision-effect{
+ font-size:14px;
+ line-height:1.56;
+}
+html.mobile-ui .quick-note-wrap{
+ margin:12px 0 8px;
+ padding:12px;
+}
+html.mobile-ui .quick-note-wrap label{font-size:16px}
+html.mobile-ui .quick-note-help{font-size:13px}
+html.mobile-ui .quick-note-input{
+ min-height:112px;
+ font-size:16px;
+ line-height:1.5;
+}
+html.mobile-ui .queue-status{font-size:12px}
+html.mobile-ui .pagination{display:none!important}
+html.mobile-ui body.tab-review #panel-review{
+ padding-bottom:250px;
+}
+html.mobile-ui .mobile-progress-strip{
+ position:fixed;
+ display:none;
+ left:7px;
+ right:7px;
+ bottom:calc(159px + env(safe-area-inset-bottom));
+ z-index:39;
+ min-height:53px;
+ padding:7px 10px 8px;
+ border:1px solid #3b414a;
+ border-radius:12px;
+ background:rgba(10,12,15,.97);
+ box-shadow:0 10px 30px rgba(0,0,0,.42);
+ backdrop-filter:blur(16px);
+}
+html.mobile-ui body.review-active .mobile-progress-strip{display:block}
+.mobile-progress-label{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:8px;
+ margin-bottom:6px;
+ font-size:11px;
+ color:#c9c7bf;
+}
+.mobile-progress-label span:last-child{text-align:right}
+.mobile-progress-track{
+ height:9px;
+ border:1px solid #3e444e;
+ background:#090b0e;
+ overflow:hidden;
+ border-radius:999px;
+}
+.mobile-progress-track>div{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,var(--red2),var(--ivory));
+ transition:width .22s ease;
+}
+html.mobile-ui .mobile-review-dock{
+ bottom:calc(70px + 7px + env(safe-area-inset-bottom));
+}
+html.mobile-ui body.review-active .toast{
+ bottom:calc(226px + env(safe-area-inset-bottom));
+}
+html.mobile-ui .review-complete{
+ min-height:calc(100dvh - 190px);
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
+html.mobile-ui .review-complete .complete-actions{
+ grid-template-columns:1fr;
+ width:100%;
+}
+@media(max-width:400px){
+ .mobile-progress-label{font-size:10px}
+ html.mobile-ui .decision-question strong{font-size:17px}
+}
+
 </style>
 </head>
 <body>
@@ -441,9 +792,10 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
  <div class="header-inner">
   <div class="brand">
    <div class="logo" aria-hidden="true"></div>
-   <div><h1>OMNIFRAME // PERSONALITY BINGO</h1><div class="sub">10,000 weighted cards · one-handed mobile review</div></div>
+   <div><h1>OMNIFRAME // PERSONALITY BINGO</h1><div class="sub">v1.3 · random one-by-one review · notes included</div></div>
   </div>
   <div class="header-actions">
+   <button class="install-button" data-action="install-app">Install app</button>
    <button data-action="random">Random undecided</button>
    <button data-action="export-full">Export backup</button>
    <button data-action="import">Import</button>
@@ -454,9 +806,9 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
  <section class="hero">
   <div class="hero-grid">
    <div>
-    <div class="kicker">USER: OMNIFRAME // AVATAR AND PERSONALITY CANON</div>
+    <div class="kicker">USER: OMNIFRAME // MOBILE PWA v1.3</div>
     <h2>No canonical body. One persistent digital avatar.</h2>
-    <p>OMNIFRAME does not claim a fixed biological appearance. His visual identity is a three-dimensional avatar shell shaped by his uncensored current interests before this review. The app below lets you approve or reject 500 extrapolated entries in each of twenty sections, adjust their behavioral weights, add spontaneous notes, and export the resulting culling file. On phones it opens one card at a time with large thumb controls at the bottom.</p>
+    <div class="mobile-quick-actions"><button class="primary install-button" data-action="install-app">Install on this phone</button><button data-action="random">Start reviewing</button></div><p>OMNIFRAME does not claim a fixed biological appearance. His visual identity is a three-dimensional avatar shell shaped by his uncensored current interests before this review. The app below lets you approve or reject 500 extrapolated entries in each of twenty sections, adjust their behavioral weights, add spontaneous notes, and export the resulting culling file. On phones it opens one card at a time with large thumb controls at the bottom.</p>
    </div>
    <aside class="locked">
     <h3>Locked source canon</h3>
@@ -486,7 +838,7 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
 
  <section class="panel" id="panel-review">
   <div class="toolbar">
-   <button class="mobile-filter-toggle" id="mobileFilterToggle" type="button">Filters, progress & batch tools</button>
+   <button class="mobile-filter-toggle" id="mobileFilterToggle" type="button">Browse, search or review previous decisions</button>
    <div class="toolbar-row">
     <input id="search" type="search" placeholder="Search 10,000 entries…">
     <select id="kindFilter"><option value="all">Likes + dislikes</option><option value="interest">Likes only</option><option value="dislike">Dislikes only</option></select>
@@ -507,7 +859,7 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
     <button class="bad" data-action="reject-visible">Disapprove visible page</button>
     <button data-action="clear-visible">Clear visible decisions</button>
     <button data-action="random">Random undecided</button>
-    <span class="small">Keys: <kbd>A</kbd> approve · <kbd>D</kbd> disapprove · <kbd>U</kbd> clear when a card button is focused.</span>
+    <span class="small">The normal review flow is randomized and shows one undecided card at a time. These controls are only for searching or revisiting cards.</span>
    </div>
   </div>
   <div class="review-grid" id="reviewGrid"></div>
@@ -553,29 +905,39 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
 
  <section class="panel" id="panel-export">
   <div class="export-grid">
-   <article class="card export-card"><h3>Full review backup</h3><p>All decisions, adjusted weights, notes, custom entries, scratchpad and app metadata. Import this later to resume exactly where you stopped.</p><button class="primary" data-action="export-full">Download full JSON</button></article>
-   <article class="card export-card"><h3>Culled personality bible</h3><p>Approved interests, retained dislikes, custom entries and weights. This is the main file to upload to chat for the next OMNIFRAME patch.</p><button class="good" data-action="export-approved">Download culled JSON</button></article>
-   <article class="card export-card"><h3>Rejection report</h3><p>Everything you explicitly disapproved, including notes explaining why it should be removed.</p><button class="bad" data-action="export-rejected">Download rejections JSON</button></article>
+   <article class="card export-card"><h3>Full review backup</h3><p>All decisions, randomized queue position, adjusted weights, decision notes, custom entries, scratchpad and app metadata. Import this later to resume exactly where you stopped.</p><button class="primary" data-action="export-full">Download full JSON</button></article>
+   <article class="card export-card"><h3>Culled personality bible</h3><p>Approved interests, retained dislikes, the note attached to every decision, custom entries and weights. This is the main file to upload to chat for the next OMNIFRAME patch.</p><button class="good" data-action="export-approved">Download culled JSON</button></article>
+   <article class="card export-card"><h3>Rejection report</h3><p>Everything you explicitly disapproved, including the note saved when you made the decision.</p><button class="bad" data-action="export-rejected">Download rejections JSON</button></article>
    <article class="card export-card"><h3>Readable Markdown</h3><p>A human-readable summary of decisions and custom additions.</p><button data-action="export-markdown">Download Markdown</button></article>
    <article class="card export-card"><h3>Import saved review</h3><p>Restore a prior JSON backup or a previously exported culling file.</p><button data-action="import">Choose JSON file</button></article>
+   <article class="card export-card install-card"><h3>Install on this phone</h3><p>Install the GitHub Pages site as a standalone app. It keeps the same local review data, works offline after the first load, and retains JSON import/export.</p><button class="primary install-button" data-action="install-app">Install OMNIFRAME Review</button><div class="small install-status">Install availability is being checked.</div></article>
    <article class="card export-card"><h3>Reset application</h3><p>Deletes locally persisted decisions. Export a backup first; this cannot be undone.</p><button class="warn" data-action="reset">Reset local review</button></article>
   </div>
  </section>
 
- <div class="footer-note">Offline single-file application · localStorage persistence · developed by ˣᵉяonin</div>
+ <div class="footer-note">Installable offline PWA v1.3 · persistent local review · developed by ˣᵉяonin</div>
 </main>
 
 <input type="file" id="importFile" accept=".json,application/json" hidden>
 
+
+<div class="mobile-progress-strip" id="mobileProgressStrip" aria-label="Review progress">
+ <div class="mobile-progress-label">
+  <span><b id="bottomReviewedCount">0</b> of <b id="bottomTotalCount">10,000</b> reviewed</span>
+  <span><b id="bottomProgressPercent">0%</b> · <span id="bottomRemainingCount">10,000 remaining</span></span>
+ </div>
+ <div class="mobile-progress-track"><div id="bottomProgressBar"></div></div>
+</div>
+
 <div class="mobile-review-dock" id="mobileReviewDock" aria-label="Review controls">
  <button class="dock-bad" data-mobile-decision="rejected" aria-label="Disapprove current card">
-  <span class="dock-icon">×</span><span>Disapprove</span>
+  <span class="dock-icon">×</span><span>Disapprove & save note</span>
  </button>
  <button class="dock-skip" data-mobile-decision="undecided" aria-label="Skip current card">
   <span class="dock-icon">›</span><span>Later</span>
  </button>
  <button class="dock-good" data-mobile-decision="approved" aria-label="Approve current card">
-  <span class="dock-icon">✓</span><span>Approve</span>
+  <span class="dock-icon">✓</span><span>Approve & save note</span>
  </button>
 </div>
 
@@ -584,9 +946,19 @@ kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;bor
  <button data-mobile-tab="review"><span>▦</span><small>Review</small></button>
  <button data-mobile-tab="custom"><span>＋</span><small>Add</small></button>
  <button data-mobile-tab="export"><span>⇩</span><small>Export</small></button>
+ <button class="install-button" data-action="install-app"><span>⬇</span><small>Install</small></button>
 </nav>
 
 <div class="toast" id="toast" role="status"></div>
+
+
+<dialog id="installDialog">
+ <div class="dialog-head"><b>Install OMNIFRAME Personality Review</b><button data-action="close-install-dialog">Close</button></div>
+ <div class="dialog-body">
+  <p id="installHelpText">In Chrome, open the browser menu and choose <b>Install app</b> or <b>Add to Home screen</b>. Accept the installation prompt. The installed version uses the same GitHub Pages address and retains the same browser data.</p>
+  <button class="primary" data-action="retry-install">Try install prompt</button>
+ </div>
+</dialog>
 
 <dialog id="confirmDialog">
  <div class="dialog-head"><b>Reset all local review data?</b><button data-action="close-dialog">Close</button></div>
@@ -616,7 +988,8 @@ function defaultState(){
  return {
   version:VERSION, updatedAt:new Date().toISOString(), decisions:{},
   customLikes:[], customDislikes:[], scratchpad:"", lastTab:"avatar",
-  filters:{search:"",kind:"all",section:"all",status:"all",pageSize:48,page:1}
+  randomQueue:[], queueCreatedAt:null,
+  filters:{search:"",kind:"all",section:"all",status:"undecided",pageSize:1,page:1}
  };
 }
 let state=loadState();
@@ -695,6 +1068,54 @@ function buildEntries(){
 }
 const ENTRIES=buildEntries();
 const ENTRY_MAP=new Map(ENTRIES.map(e=>[e.id,e]));
+
+function randomIndex(max){
+ if(max<=1)return 0;
+ if(window.crypto&&crypto.getRandomValues){
+  const a=new Uint32Array(1);
+  crypto.getRandomValues(a);
+  return a[0]%max;
+ }
+ return Math.floor(Math.random()*max);
+}
+function shuffleIds(ids){
+ const a=[...ids];
+ for(let i=a.length-1;i>0;i--){
+  const j=randomIndex(i+1);
+  [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+function ensureRandomQueue(){
+ const valid=new Set(ENTRIES.map(e=>e.id));
+ const existing=Array.isArray(state.randomQueue)
+  ?state.randomQueue.filter((id,index,array)=>valid.has(id)&&array.indexOf(id)===index)
+  :[];
+ const present=new Set(existing);
+ const missing=shuffleIds(ENTRIES.map(e=>e.id).filter(id=>!present.has(id)));
+ state.randomQueue=[...existing,...missing];
+ if(!state.queueCreatedAt)state.queueCreatedAt=new Date().toISOString();
+}
+function moveQueueItemToEnd(id){
+ ensureRandomQueue();
+ const index=state.randomQueue.indexOf(id);
+ if(index<0)return;
+ state.randomQueue.splice(index,1);
+ state.randomQueue.push(id);
+}
+function queueOrderMap(){
+ ensureRandomQueue();
+ return new Map(state.randomQueue.map((id,index)=>[id,index]));
+}
+function reviewedCounts(){
+ let approved=0,rejected=0;
+ for(const d of Object.values(state.decisions)){
+  if(d.status==="approved")approved++;
+  else if(d.status==="rejected")rejected++;
+ }
+ return {approved,rejected,reviewed:approved+rejected,remaining:ENTRIES.length-approved-rejected};
+}
+
 let filtered=[];
 let pageEntries=[];
 
@@ -731,45 +1152,140 @@ function populateFilters(){
  $("#pageSize").value=String(state.filters.pageSize);
 }
 function filterEntries(){
- const f=state.filters,q=(f.search||"").trim().toLowerCase();
+ const f=state.filters;
+ if(isMobile())f.pageSize=1;
+ const q=(f.search||"").trim().toLowerCase();
+ ensureRandomQueue();
+ const order=queueOrderMap();
  filtered=ENTRIES.filter(e=>{
   const d=state.decisions[e.id]?.status||"undecided";
   return (f.kind==="all"||e.kind===f.kind)
    &&(f.section==="all"||e.sectionId===f.section)
    &&(f.status==="all"||d===f.status)
-   &&(!q||`${e.title} ${e.description} ${e.sectionName}`.toLowerCase().includes(q));
- });
+   &&(!q||`${e.title} ${e.description} ${e.sectionName} ${e.topic} ${e.facet}`.toLowerCase().includes(q));
+ }).sort((a,b)=>(order.get(a.id)??999999)-(order.get(b.id)??999999));
  const maxPage=Math.max(1,Math.ceil(filtered.length/f.pageSize));
  f.page=clamp(Number(f.page)||1,1,maxPage);
  const start=(f.page-1)*f.pageSize;
  pageEntries=filtered.slice(start,start+f.pageSize);
  renderStats();
  renderCards();
- $("#pageLabel").textContent=`Page ${f.page} of ${maxPage} · ${filtered.length.toLocaleString()} matches`;
+ const queueMode=f.status==="undecided"&&f.kind==="all"&&f.section==="all"&&!q;
+ $("#pageLabel").textContent=queueMode
+  ?`Random queue · ${filtered.length.toLocaleString()} remaining`
+  :`Page ${f.page} of ${maxPage} · ${filtered.length.toLocaleString()} matches`;
  $("#prevPage").disabled=f.page<=1;
  $("#nextPage").disabled=f.page>=maxPage;
  saveState();
 }
 function renderStats(){
- let a=0,r=0;
- for(const d of Object.values(state.decisions)){if(d.status==="approved")a++;else if(d.status==="rejected")r++}
- const u=ENTRIES.length-a-r;
+ const counts=reviewedCounts();
  $("#totalCount").textContent=ENTRIES.length.toLocaleString();
- $("#approvedCount").textContent=a.toLocaleString();
- $("#rejectedCount").textContent=r.toLocaleString();
- $("#undecidedCount").textContent=u.toLocaleString();
+ $("#approvedCount").textContent=counts.approved.toLocaleString();
+ $("#rejectedCount").textContent=counts.rejected.toLocaleString();
+ $("#undecidedCount").textContent=counts.remaining.toLocaleString();
  $("#filteredCount").textContent=filtered.length.toLocaleString();
- $("#progressBar").style.width=((a+r)/ENTRIES.length*100).toFixed(2)+"%";
+ const percent=ENTRIES.length?counts.reviewed/ENTRIES.length*100:0;
+ $("#progressBar").style.width=percent.toFixed(2)+"%";
+ if($("#bottomReviewedCount"))$("#bottomReviewedCount").textContent=counts.reviewed.toLocaleString();
+ if($("#bottomTotalCount"))$("#bottomTotalCount").textContent=ENTRIES.length.toLocaleString();
+ if($("#bottomProgressPercent"))$("#bottomProgressPercent").textContent=percent.toFixed(percent<10?1:0)+"%";
+ if($("#bottomRemainingCount"))$("#bottomRemainingCount").textContent=`${counts.remaining.toLocaleString()} remaining`;
+ if($("#bottomProgressBar"))$("#bottomProgressBar").style.width=percent.toFixed(2)+"%";
 }
 function weightLabel(k){
  return ({affinity:"Affinity",conversation:"Conversation",reference:"Reference",knowledge:"Knowledge",analogy:"Analogy",excitement:"Excitement ×",profanity:"Profanity ×",cooldown:"Cooldown",aversion:"Aversion",critique:"Critique",avoidance:"Avoidance",sensitivity:"Sensitivity",autonomyImpact:"Autonomy impact",rant:"Rant ×"})[k]||k;
 }
+
+const FACET_EFFECTS={
+ "Core affinity":"If approved, this becomes a genuine baseline preference rather than a passing reference.",
+ "Technical mechanics":"If approved, OMNIFRAME should care about how it works, its systems, tradeoffs and underlying construction.",
+ "Visual language":"If approved, its shapes, materials, colors and composition can influence art direction and prompt design.",
+ "Sound and atmosphere":"If approved, its sound, mood and environmental texture can affect examples, scenes and media discussion.",
+ "Historical lineage":"If approved, he should care about its origins, predecessors and how it changed over time.",
+ "Obscure variants":"If approved, he should seek unusual, overlooked or specialized examples instead of only famous ones.",
+ "Customization and modding":"If approved, he should be interested in modifying, rebuilding or personalizing it.",
+ "Collection and archival value":"If approved, he should value preserving references, files, versions and forgotten examples.",
+ "Creative prompt use":"If approved, it can actively appear in image, video, music or writing prompts.",
+ "Analogy potential":"If approved, he may use it as an analogy when explaining unrelated systems.",
+ "Conversation trigger":"If approved, related conversation can naturally make him more talkative or curious.",
+ "Deep-dive research":"If approved, he should be willing to investigate sources, details and edge cases.",
+ "Practical application":"If approved, he should look for ways to turn it into an actual feature, tool or workflow.",
+ "Future possibilities":"If approved, he should enjoy speculating about how it could evolve.",
+ "Failure modes":"If approved, he should care about why examples fail and what can be learned from those failures.",
+ "Adjacent comparisons":"If approved, he may compare it with neighboring genres, systems or technologies.",
+ "Narrative implications":"If approved, he should consider what it means for character, story and worldbuilding.",
+ "Cultural context":"If approved, he should care about the community, era and social conditions surrounding it.",
+ "Personal ritual value":"If approved, it may become part of his routines, comfort, environment or personal habits.",
+ "Spontaneous reference use":"If approved, he may casually mention it without being directly asked.",
+ "Baseline aversion":"If approved, this becomes something he instinctively dislikes when encountered.",
+ "Workflow damage":"If approved, he should notice and criticize how it makes work slower, harder or less reliable.",
+ "User autonomy":"If approved, he should object when it takes control or ownership away from the user.",
+ "Accessibility harm":"If approved, he should treat unnecessary barriers and exclusion as a serious design failure.",
+ "Privacy harm":"If approved, he should strongly object to threats against privacy, consent or ownership.",
+ "Performance damage":"If approved, he should criticize wasted time, memory, power or attention.",
+ "Aesthetic incoherence":"If approved, he should notice when it damages visual or tonal clarity.",
+ "Manipulative version":"If approved, he should recognize and criticize the most exploitative form of the behavior.",
+ "Lazy implementation":"If approved, he should treat it as evidence of unresolved thinking or cheap execution.",
+ "Worst-case outcome":"If approved, he should actively warn against the most damaging result this could cause.",
+ "Warning-sign detection":"If approved, he should notice early indicators and point them out quickly.",
+ "Troubleshooting response":"If approved, he should aggressively isolate, explain and repair this problem.",
+ "Satirical reference":"If approved, it may become material for dry jokes, profanity or hostile analogies.",
+ "Better-practice comparison":"If approved, he should contrast it with a cleaner and more respectful alternative.",
+ "Social consequence":"If approved, he should care about its effect on trust, dignity and group behavior.",
+ "Long-term damage":"If approved, he should consider how it degrades systems, work or culture over time.",
+ "Emotional response":"If approved, it can trigger annoyance, contempt, anger or colder focus.",
+ "Hard boundary":"If approved, he may refuse to endorse or normalize it.",
+ "Redesign principle":"If approved, rejecting it should produce a clear positive design rule.",
+ "Spontaneous complaint":"If approved, he may complain about it when a related subject appears."
+};
+function decisionGuide(e){
+ const topic=`“${e.topic}”`;
+ const facet=`${e.facet.toLowerCase()}`;
+ if(e.kind==="interest"){
+  return {
+   question:`Should OMNIFRAME genuinely like ${topic} specifically for its ${facet}?`,
+   approve:`Approve when you want this to become a real part of his interests and behavior—not merely something he knows exists.`,
+   reject:`Disapprove when you do not want him to assume he likes ${topic} in this particular way. This does not automatically mean he hates it.`,
+   effect:FACET_EFFECTS[e.facet]||`If approved, ${topic} will influence his personality according to the ${facet} facet.`
+  };
+ }
+ return {
+  question:`Should OMNIFRAME genuinely dislike or criticize ${topic} specifically because of its ${facet}?`,
+  approve:`Approve when you want this to become an actual irritation, criticism trigger, warning sign or design rule for him.`,
+  reject:`Disapprove when you do not want him to automatically treat ${topic} as bad in this particular way. This does not automatically mean he likes it.`,
+  effect:FACET_EFFECTS[e.facet]||`If approved, ${topic} will influence his dislikes according to the ${facet} facet.`
+ };
+}
+function saveVisibleNote(id){
+ const field=document.querySelector(`[data-note="${id}"]`);
+ if(field)decision(id).note=field.value.trim();
+}
+
 function renderCards(){
  const grid=$("#reviewGrid");
- if(!pageEntries.length){grid.innerHTML=`<div class="card empty">No entries match the current filters.</div>`;return}
- grid.innerHTML=pageEntries.map(e=>{
+ if(!pageEntries.length){
+  const counts=reviewedCounts();
+  if(counts.remaining===0){
+   grid.innerHTML=`<article class="card review-complete">
+    <div class="meta">REVIEW QUEUE COMPLETE</div>
+    <h2>All ${ENTRIES.length.toLocaleString()} cards are finished.</h2>
+    <p>${counts.approved.toLocaleString()} approved · ${counts.rejected.toLocaleString()} disapproved. Export the full backup and the culled personality bible before making further changes.</p>
+    <div class="complete-actions">
+     <button class="primary" data-action="export-full">Download full backup</button>
+     <button class="good" data-action="export-approved">Download culled bible</button>
+    </div>
+   </article>`;
+  }else{
+   grid.innerHTML=`<div class="card empty">No cards match the current search or filter. Clear the filters to return to the randomized undecided queue.</div>`;
+  }
+  return;
+ }
+ const counts=reviewedCounts();
+ grid.innerHTML=pageEntries.map((e,index)=>{
   const d=state.decisions[e.id]||{status:"undecided",note:"",weights:{}};
   const w=effectiveWeights(e);
+  const guide=decisionGuide(e);
   const chips=Object.entries(w).slice(0,4).map(([k,v])=>`<span class="chip">${esc(weightLabel(k))}: ${esc(v)}</span>`).join("");
   const weightInputs=Object.entries(w).map(([k,v])=>{
    const isFloat=["excitement","profanity","rant"].includes(k);
@@ -777,28 +1293,51 @@ function renderCards(){
     <input data-weight="${esc(k)}" data-id="${e.id}" type="number" value="${esc(v)}" min="${isFloat?"0":"1"}" max="${isFloat?"3":"100"}" step="${isFloat?"0.01":"1"}"></div>`;
   }).join("");
   return `<article class="card review-card ${esc(d.status==="approved"?"approved":d.status==="rejected"?"rejected":"")}" data-card-id="${e.id}" tabindex="0">
+   <div class="queue-status"><span>Random undecided card</span><span>${counts.reviewed.toLocaleString()} done · ${counts.remaining.toLocaleString()} remaining</span></div>
    <div class="review-head"><div><div class="meta">${esc(e.kind)} · ${esc(e.sectionName)}</div><h3>${esc(e.title)}</h3></div><span class="index">${esc(e.id)}</span></div>
-   <div class="desc">${esc(e.description)}</div><div class="chips">${chips}</div>
-   <div class="card-actions">
-    <button class="good ${d.status==="approved"?"active":""}" data-decision="approved" data-id="${e.id}">Approve</button>
-    <button class="bad ${d.status==="rejected"?"active":""}" data-decision="rejected" data-id="${e.id}">Disapprove</button>
-    <button data-decision="undecided" data-id="${e.id}">Clear</button>
+   <div class="decision-question"><span class="question-label">What this card is asking</span><strong>${esc(guide.question)}</strong></div>
+   <div class="desc">${esc(e.description)}</div>
+   <div class="decision-guide-grid">
+    <div class="decision-guide approve-guide"><b>Approving means</b><p>${esc(guide.approve)}</p></div>
+    <div class="decision-guide reject-guide"><b>Disapproving means</b><p>${esc(guide.reject)}</p></div>
    </div>
-   <details class="details"><summary>Edit weights and note</summary>
+   <div class="decision-effect"><b>What approval changes:</b> ${esc(guide.effect)}</div>
+   <div class="chips">${chips}</div>
+   <div class="quick-note-wrap">
+    <label for="note-${e.id}">Optional note for this exact decision</label>
+    <span class="quick-note-help">Write corrections, limits, reasons, exceptions or implementation instructions. The note is saved with Approve, Disapprove or Later and included in every JSON export.</span>
+    <textarea id="note-${e.id}" class="quick-note-input note-input" data-note="${e.id}" placeholder="Example: He likes the visual style, but should not claim expert knowledge or bring it up constantly.">${esc(d.note||"")}</textarea>
+   </div>
+   <div class="card-actions">
+    <button class="good ${d.status==="approved"?"active":""}" data-decision="approved" data-id="${e.id}">Approve & save note</button>
+    <button class="bad ${d.status==="rejected"?"active":""}" data-decision="rejected" data-id="${e.id}">Disapprove & save note</button>
+    <button data-decision="undecided" data-id="${e.id}">Later</button>
+   </div>
+   <details class="details"><summary>Advanced: edit behavior weights</summary>
     <div class="weight-grid">${weightInputs}</div>
-    <textarea class="note-input" data-note="${e.id}" placeholder="Optional reason, correction or implementation note…">${esc(d.note||"")}</textarea>
    </details>
   </article>`;
  }).join("");
 }
 function setDecision(id,status){
- const d=decision(id);d.status=status;saveState();filterEntries();
+ saveVisibleNote(id);
+ const d=decision(id);
+ if(status==="undecided"){
+  moveQueueItemToEnd(id);
+ }else{
+  d.status=status;
+ }
+ state.filters.page=1;
+ saveState();
+ filterEntries();
 }
 function setVisible(status){
  pageEntries.forEach(e=>{const d=decision(e.id);d.status=status});
- saveState();filterEntries();toast(`${pageEntries.length} visible cards updated.`);
+ state.filters.page=1;saveState();filterEntries();toast(`${pageEntries.length} visible cards updated.`);
 }
 function showTab(name){
+ document.body.classList.remove("tab-avatar","tab-review","tab-custom","tab-consumables","tab-export");
+ document.body.classList.add(`tab-${name}`);
  $$(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
  $$(".panel").forEach(p=>p.classList.toggle("active",p.id===`panel-${name}`));
  state.lastTab=name;saveState();syncMobileUI();
@@ -881,12 +1420,17 @@ function exportMarkdown(){
 }
 function dateStamp(){return new Date().toISOString().slice(0,10)}
 function randomUndecided(){
- const pool=ENTRIES.filter(e=>(state.decisions[e.id]?.status||"undecided")==="undecided");
- if(!pool.length){toast("No undecided cards remain.");return}
- const e=pool[Math.floor(Math.random()*pool.length)];
- state.filters.kind="all";state.filters.section=e.sectionId;state.filters.status="undecided";state.filters.search=e.topic;
- state.filters.page=1;populateFilters();filterEntries();showTab("review");
- setTimeout(()=>document.querySelector(`[data-card-id="${e.id}"]`)?.scrollIntoView({behavior:"smooth",block:"center"}),60);
+ ensureRandomQueue();
+ state.filters.kind="all";
+ state.filters.section="all";
+ state.filters.status="undecided";
+ state.filters.search="";
+ state.filters.pageSize=1;
+ state.filters.page=1;
+ populateFilters();
+ filterEntries();
+ showTab("review");
+ window.scrollTo({top:Math.max(0,$("#panel-review").offsetTop-58),behavior:"smooth"});
 }
 function importData(file){
  const reader=new FileReader();
@@ -905,19 +1449,74 @@ function importData(file){
     next.customLikes=obj.customLikes||[];next.customDislikes=obj.customDislikes||[];next.scratchpad=obj.scratchpad||"";
     state=next;
    }
-   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+   ensureRandomQueue();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
    populateFilters();renderCustom();filterEntries();showTab(state.lastTab||"review");toast("Review imported.");
   }catch(e){toast("That file is not a valid OMNIFRAME review JSON.");}
  };
  reader.readAsText(file);
 }
 function resetAll(){
- localStorage.removeItem(STORAGE_KEY);state=defaultState();populateFilters();renderCustom();filterEntries();$("#confirmDialog").close();showTab("avatar");toast("Local review reset.");
+ localStorage.removeItem(STORAGE_KEY);state=defaultState();ensureRandomQueue();populateFilters();renderCustom();filterEntries();$("#confirmDialog").close();showTab("avatar");toast("Local review reset.");
 }
 
 
-const MOBILE_QUERY=window.matchMedia("(max-width:700px)");
-function isMobile(){return MOBILE_QUERY.matches}
+
+let deferredInstallPrompt=null;
+function isStandalone(){
+ return matchMedia("(display-mode: standalone)").matches
+   || window.navigator.standalone===true;
+}
+function updateInstallUI(){
+ const installed=isStandalone();
+ $$(".install-button").forEach(btn=>{
+  btn.hidden=installed;
+  btn.disabled=false;
+ });
+ $$(".install-status").forEach(el=>{
+  el.textContent=installed
+    ?"Installed as a standalone app."
+    :deferredInstallPrompt
+      ?"Ready to install."
+      :"Use the browser menu if the direct prompt is unavailable.";
+ });
+}
+async function installApp(){
+ if(isStandalone()){toast("The app is already installed.");return}
+ if(deferredInstallPrompt){
+  deferredInstallPrompt.prompt();
+  const result=await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt=null;
+  updateInstallUI();
+  toast(result.outcome==="accepted"?"Installation started.":"Installation dismissed.");
+  return;
+ }
+ $("#installDialog")?.showModal();
+}
+window.addEventListener("beforeinstallprompt",event=>{
+ event.preventDefault();
+ deferredInstallPrompt=event;
+ updateInstallUI();
+});
+window.addEventListener("appinstalled",()=>{
+ deferredInstallPrompt=null;
+ updateInstallUI();
+ toast("OMNIFRAME Review installed.");
+});
+if("serviceWorker" in navigator){
+ window.addEventListener("load",()=>{
+  navigator.serviceWorker.register("./service-worker.js",{updateViaCache:"none"})
+   .then(reg=>reg.update())
+   .catch(()=>{});
+ });
+}
+
+const MOBILE_QUERY=window.matchMedia("(max-width:1100px)");
+function isMobile(){
+ return document.documentElement.classList.contains("mobile-ui")
+   || MOBILE_QUERY.matches
+   || matchMedia("(pointer:coarse)").matches
+   || navigator.maxTouchPoints>0;
+}
 function syncMobileUI(){
  document.body.classList.toggle("review-active",isMobile()&&state.lastTab==="review");
  $$("[data-mobile-tab]").forEach(b=>b.classList.toggle("active",b.dataset.mobileTab===state.lastTab));
@@ -925,31 +1524,30 @@ function syncMobileUI(){
 function mobileCurrentEntry(){return pageEntries[0]||null}
 function mobileAdvance(status){
  const current=mobileCurrentEntry();
- if(!current){toast("No card is available in this filter.");return}
- const d=decision(current.id);
- d.status=status;
- saveState();
- if(state.filters.status==="undecided"){
-  filterEntries();
+ if(!current){toast("No undecided cards remain in the current queue.");return}
+ saveVisibleNote(current.id);
+ if(status==="undecided"){
+  moveQueueItemToEnd(current.id);
  }else{
-  state.filters.page=Math.min(
-   state.filters.page+1,
-   Math.max(1,Math.ceil(filtered.length/Math.max(1,state.filters.pageSize)))
-  );
-  filterEntries();
+  decision(current.id).status=status;
  }
- window.scrollTo({top:$("#panel-review").offsetTop-58,behavior:"smooth"});
+ state.filters.page=1;
+ saveState();
+ filterEntries();
+ window.scrollTo({top:Math.max(0,$("#panel-review").offsetTop-58),behavior:"smooth"});
  if(navigator.vibrate)navigator.vibrate(status==="approved"?24:status==="rejected"?[18,35,18]:10);
 }
 function configurePhoneDefaults(){
  if(!isMobile())return;
- if(!state.mobileConfigured){
-  state.filters.pageSize=1;
-  state.filters.status="undecided";
-  state.filters.page=1;
-  state.mobileConfigured=true;
-  saveState();
- }
+ ensureRandomQueue();
+ state.filters.pageSize=1;
+ state.filters.status="undecided";
+ state.filters.kind="all";
+ state.filters.section="all";
+ state.filters.search="";
+ state.filters.page=1;
+ state.mobileConfigured=true;
+ saveState();
 }
 
 
@@ -973,7 +1571,10 @@ document.addEventListener("click",e=>{
   "random":randomUndecided,"add-like":()=>addCustom("like"),"add-dislike":()=>addCustom("dislike"),
   "export-full":exportFull,"export-approved":exportApproved,"export-rejected":exportRejected,"export-markdown":exportMarkdown,
   "import":()=>$("#importFile").click(),"reset":()=>$("#confirmDialog").showModal(),
-  "close-dialog":()=>$("#confirmDialog").close(),"confirm-reset":resetAll
+  "close-dialog":()=>$("#confirmDialog").close(),"confirm-reset":resetAll,
+  "install-app":installApp,
+  "retry-install":installApp,
+  "close-install-dialog":()=>$("#installDialog").close()
  })[action]?.();
 });
 document.addEventListener("change",e=>{
@@ -1002,6 +1603,7 @@ document.addEventListener("keydown",e=>{
  if(e.key.toLowerCase()==="u")setDecision(id,"undecided");
 });
 
+ensureRandomQueue();
 configurePhoneDefaults();
 renderAvatar();
 renderConsumables();
@@ -1010,7 +1612,25 @@ renderCustom();
 filterEntries();
 showTab(state.lastTab||"avatar");
 syncMobileUI();
+updateInstallUI();
 MOBILE_QUERY.addEventListener?.("change",()=>{configurePhoneDefaults();populateFilters();filterEntries();syncMobileUI()});
+
+let swipeStart=null;
+document.addEventListener("pointerdown",e=>{
+ const card=e.target.closest(".review-card");
+ if(!card||!isMobile()||e.target.closest("button,input,textarea,select,summary,details"))return;
+ swipeStart={x:e.clientX,y:e.clientY,t:Date.now()};
+});
+document.addEventListener("pointerup",e=>{
+ if(!swipeStart||!isMobile())return;
+ const dx=e.clientX-swipeStart.x;
+ const dy=e.clientY-swipeStart.y;
+ const dt=Date.now()-swipeStart.t;
+ swipeStart=null;
+ if(dt>850||Math.abs(dx)<72||Math.abs(dx)<Math.abs(dy)*1.25)return;
+ mobileAdvance(dx>0?"approved":"rejected");
+});
+
 </script>
 </body>
 </html>
