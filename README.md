@@ -1,25 +1,37 @@
-# OMNIFRAME Personality Bingo — Mobile v1.1
+# OMNIFRAME Preference Review v2.0
 
-A phone-first GitHub Pages build of the OMNIFRAME personality review application.
+This is a complete replacement for the earlier abstract 10,000-card application.
 
-## Replace the old site
+## What is different
 
-1. Extract this ZIP.
-2. Open your existing GitHub repository.
-3. Delete or replace the old `index.html`.
-4. Upload every file from this extracted folder to the repository root.
-5. Commit the changes to `main`.
-6. GitHub Pages will redeploy automatically.
+- The main catalog contains **1,388 actual named or plain-language items**.
+- The Games section contains **899 named games**.
+- Decisions are **Like**, **Neutral**, **Dislike**, or **Later**.
+- Neutral means OMNIFRAME understands and can help with the item but has no automatic positive or negative attitude.
+- Every card explains what the item is and exactly what each decision changes.
+- Notes are saved with decisions and exported.
+- The layout is one-column and mobile-first at every viewport width. It cannot fall back to the old multi-column desktop grid on a phone.
+- Your older localStorage review is preserved as a legacy record in full exports; the new application uses a separate storage key.
 
-## Phone controls
+## Deploy over the existing GitHub Pages site
 
-- The review page defaults to one undecided card at a time.
-- Use the fixed bottom buttons for Disapprove, Later, and Approve.
-- Use the fixed navigation bar for Avatar, Review, Add, and Export.
-- Tap `Filters, progress & batch tools` to open advanced filters.
-- Decisions remain in browser local storage.
-- Export a Full Review Backup regularly.
+1. Export a backup from the old site if you care about its current seven decisions.
+2. Extract this ZIP.
+3. Delete the old repository files or replace them with every extracted file and folder.
+4. Commit to `main`.
+5. Wait for GitHub Pages to deploy.
+6. Close every old tab of the site.
+7. Reopen the same Pages URL with `?v=2.0` appended once.
+8. Refresh once more after the new header appears.
 
-## Important
+The header must read:
 
-Use the same GitHub Pages URL and the same non-private browser. Replacing the site files at the same URL should preserve existing browser progress.
+`v2.0 · named items · Like / Neutral / Dislike`
+
+## Install
+
+Open the deployed site in Chrome and tap **Export → Install app**, or use:
+
+`Chrome menu → Install app`
+
+The supplied icon will appear on the home screen.

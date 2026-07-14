@@ -1,21 +1,23 @@
-OMNIFRAME MOBILE UPDATE
+OMNIFRAME PREFERENCE REVIEW v2.0
 
-TO UPDATE YOUR EXISTING GITHUB PAGES SITE:
-1. Extract this ZIP.
-2. Open the existing GitHub repository.
-3. Upload all extracted files to the root.
-4. Allow GitHub to replace index.html.
-5. Commit the changes.
-6. Open the same GitHub Pages URL on your phone.
-7. Refresh the page.
+THIS IS A FULL REPLACEMENT, NOT ANOTHER CSS PATCH.
 
-PHONE REVIEW:
-- Review opens one undecided card at a time.
-- Bottom left: Disapprove.
-- Bottom middle: leave undecided and move later.
-- Bottom right: Approve.
-- Use the fixed bottom navigation to switch pages.
-- Use Filters, progress & batch tools only when needed.
-- Export Full Review Backup regularly.
+1. Export a backup from the old version if needed.
+2. Extract this ZIP.
+3. Open the existing GitHub repository.
+4. Delete the old app files, or upload all new files and replace them.
+5. Confirm these files exist at repository root:
+   index.html
+   manifest.webmanifest
+   service-worker.js
+   .nojekyll
+   icons/
+6. Commit to main.
+7. Wait for GitHub Pages deployment.
+8. Close all old tabs for the site.
+9. Open the Pages URL with ?v=2.0 added once.
 
-Do not use private browsing and do not change the GitHub Pages URL.
+EXPECTED HEADER:
+v2.0 · named items · Like / Neutral / Dislike
+
+The old multi-column 10,000-card interface should be completely gone.

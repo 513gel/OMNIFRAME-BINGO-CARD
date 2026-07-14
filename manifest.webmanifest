@@ -1,23 +1,18 @@
 {
   "id": "./",
-  "name": "OMNIFRAME Personality Review v1.3",
+  "name": "OMNIFRAME Preference Review v2.0",
   "short_name": "OMNIFRAME",
-  "description": "Randomized one-by-one personality review with clear decision descriptions, saved notes and offline export.",
+  "description": "Mobile-first named preference review with Like, Neutral, Dislike, notes, offline use, and JSON export.",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "minimal-ui"
-  ],
-  "background_color": "#090a0c",
-  "theme_color": "#0e1116",
+  "background_color": "#08090c",
+  "theme_color": "#0b0d11",
   "orientation": "portrait-primary",
   "categories": [
     "productivity",
-    "utilities",
-    "personalization"
+    "personalization",
+    "utilities"
   ],
   "icons": [
     {
@@ -41,9 +36,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Review cards",
+      "name": "Review preferences",
       "short_name": "Review",
-      "url": "./?tab=review",
+      "url": "./?screen=review",
       "icons": [
         {
           "src": "./icons/icon-192.png",
@@ -54,7 +49,7 @@
     {
       "name": "Export results",
       "short_name": "Export",
-      "url": "./?tab=export",
+      "url": "./?screen=export",
       "icons": [
         {
           "src": "./icons/icon-192.png",
