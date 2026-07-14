@@ -1,4 +1,4 @@
-const CACHE_NAME="omniframe-preference-2.0";
+const CACHE_NAME="omniframe-preference-2.1";
 const SHELL=[
  "./","./index.html","./manifest.webmanifest",
  "./icons/favicon.ico","./icons/icon-32.png","./icons/icon-64.png",

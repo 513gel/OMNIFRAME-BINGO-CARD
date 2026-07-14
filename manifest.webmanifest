@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "OMNIFRAME Preference Review v2.0",
+  "name": "OMNIFRAME Preference Review v2.1",
   "short_name": "OMNIFRAME",
-  "description": "Mobile-first named preference review with Like, Neutral, Dislike, notes, offline use, and JSON export.",
+  "description": "Sketch-inspired mobile preference review with category, subject, description, notes, Like, Neutral, and Dislike.",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",

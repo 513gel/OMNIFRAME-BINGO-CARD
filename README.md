@@ -1,37 +1,30 @@
-# OMNIFRAME Preference Review v2.0
+# OMNIFRAME Preference Review v2.1
 
-This is a complete replacement for the earlier abstract 10,000-card application.
+This interface follows the supplied paper sketch.
 
-## What is different
+## Main review screen
 
-- The main catalog contains **1,388 actual named or plain-language items**.
-- The Games section contains **899 named games**.
-- Decisions are **Like**, **Neutral**, **Dislike**, or **Later**.
-- Neutral means OMNIFRAME understands and can help with the item but has no automatic positive or negative attitude.
-- Every card explains what the item is and exactly what each decision changes.
-- Notes are saved with decisions and exported.
-- The layout is one-column and mobile-first at every viewport width. It cannot fall back to the old multi-column desktop grid on a phone.
-- Your older localStorage review is preserved as a legacy record in full exports; the new application uses a separate storage key.
+1. Header and menu
+2. Category selector
+3. Subject selector
+4. Later and Undo controls
+5. Large description and decision-information panel
+6. Large note box
+7. Fixed Like, Neutral, and Dislike controls
+8. Fixed progress bar
 
-## Deploy over the existing GitHub Pages site
+Browse, Add, Export, Install, Import, Reset, and Help are behind the header menu.
 
-1. Export a backup from the old site if you care about its current seven decisions.
+## Update GitHub Pages
+
+1. Export a full backup from the current v2 site.
 2. Extract this ZIP.
-3. Delete the old repository files or replace them with every extracted file and folder.
+3. Replace every file in the existing GitHub repository.
 4. Commit to `main`.
-5. Wait for GitHub Pages to deploy.
-6. Close every old tab of the site.
-7. Reopen the same Pages URL with `?v=2.0` appended once.
-8. Refresh once more after the new header appears.
+5. Wait for Pages to deploy.
+6. Close old tabs.
+7. Open the same URL once with `?v=2.1` appended.
 
-The header must read:
+Expected subtitle: `v2.1 · sketch layout`.
 
-`v2.0 · named items · Like / Neutral / Dislike`
-
-## Install
-
-Open the deployed site in Chrome and tap **Export → Install app**, or use:
-
-`Chrome menu → Install app`
-
-The supplied icon will appear on the home screen.
+The storage key stays compatible with v2.0.
