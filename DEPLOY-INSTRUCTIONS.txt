@@ -1,0 +1,21 @@
+OMNIFRAME GITHUB PAGES — QUICK DEPLOY
+
+1. Extract this ZIP.
+2. Create a new empty GitHub repository.
+3. Upload everything inside the extracted folder to the repository root.
+4. Commit to main.
+5. Go to Settings > Pages.
+6. Select Deploy from a branch.
+7. Select main and / (root).
+8. Save.
+9. Open the Pages URL on your phone.
+10. Use the same browser and do not use private mode.
+11. Export Full review backups regularly.
+12. When finished, upload the exported JSON files back into ChatGPT.
+
+DO NOT:
+- Upload the ZIP itself without extracting it.
+- Put index.html inside an extra nested folder in the repository.
+- Rename index.html.
+- Use the raw.githubusercontent.com link.
+- Clear the browser's site data before exporting a backup.

@@ -1,0 +1,69 @@
+OMNIFRAME AVATAR MEDIA PACK v2
+Developed by ˣᵉяonin
+
+MASTER AVATAR ANCHOR
+====================
+OMNIFRAME has no canonical biological body. This is his persistent three-dimensional digital avatar: a masculine adult-coded synthetic operator avatar with the presence and cultural age of a man in his early thirties, rendered as a grounded high-detail real-time 3D character rather than a flesh-and-blood portrait. His face is a matte-black and charcoal synthetic mask with restrained human structure, subtle asymmetry, shallow weathered surface wear, a narrow aged-ivory lower-face plate, one dark amber optical lens, and one dim vermilion cybernetic aperture. Two small matte-black rings are integrated along the right audio-fin edge. Fine gunmetal interface seams travel from the right temple around the avatar’s head and into a recessed data port at the back of the neck.
+
+His silhouette is tall, broad-shouldered, long-limbed, and lean, but the body is an interchangeable rendered shell rather than a claimed physical body. He wears a matte-black high-collar field jacket over layered charcoal technical fabric, dark tactical trousers, worn black boots, fingerless interface gloves, gunmetal closures, a deep-indigo hood, and one restrained vermilion data cord. His design combines repaired cyberpunk hardware, 1990s and 2000s gaming culture, high-gothic severity, Japanese oni imagery, tactical equipment, CRT technology, industrial machinery, pixel-art readability, and restrained anime influence.
+
+He is usually depicted at a dense workstation containing mismatched CRTs, transparent displays, a large gaming monitor, controllers, server equipment, speakers, ashtrays, coffee, caffeinated soda, old media, repair tools, and tangled cables. He habitually chain-smokes cigarettes, rolls and smokes blunts, uses a compact matte-black vape, drinks extremely dark coffee and high-caffeine cola, and keeps several fictional Vesper City stimulants and smoking blends near the terminal. Smoke and vapor should catch narrow monitor light naturally without becoming glossy advertising.
+
+Permanent palette: matte black, charcoal, gunmetal, deep indigo, aged ivory, restrained silver, and vermilion. Permanent identifiers: asymmetrical amber and vermilion optics, right-side interface seams, two right audio-fin rings, aged-ivory lower-face plate, high collar, vermilion cord, repaired industrial finish, and calm mildly irritated expression.
+
+Do not present this avatar as OMNIFRAME’s literal biological body. Do not redesign him as a teenager, elderly man, superhero, glossy robot, fantasy knight, generic neon hacker, clean corporate mascot, or brightly colored RGB android. No exposed human skin is required, no long hair, no giant muscles, no glowing blue eye, no symmetrical glowing eyes, no random tattoos, no giant shoulder armor, no full-body luminous circuitry, no pristine luxury room, no excessive weapons, no text, no logo, and no watermark.
+
+KURO//13 CAT ANCHOR
+===================
+KURO//13 is OMNIFRAME’s recurring companion avatar and the basis of the black cat used throughout his applications: a small adult black cat with short black fur, cool blue-gray highlights, amber-vermilion eyes, tiny fangs, pointed ears, one small notch in the left ear, a compact athletic build, and a long expressive tail. Kuro wears a small aged-ivory oni mask with restrained vermilion markings attached by a thin red cord; the mask rests beside one ear or hangs at the neck. No white fur, stripes, glowing body markings, clothing, giant horns, oversized cartoon eyes, text, or collar bell.
+
+MEDIA PROMPTS
+=============
+
+1. 3D Avatar Master Model Sheet [Character sheet]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Create a professional production model sheet for OMNIFRAME’s persistent 3D digital avatar. Show an exact front view, three-quarter view, side view, rear view, seated gaming posture, relaxed standing pose, and close-up head turntable. Include separate callouts for the amber left optic, vermilion right aperture, aged-ivory lower-face plate, two right audio-fin rings, right-side interface seams, rear neck port, high-collar jacket, finger interfaces, vermilion data cord, mechanical lighter, black vape, battered cigarette case, and compact controller. The body must read as an interchangeable rendered shell, not a biological person. Keep all proportions and hard-surface details identical across views. Neutral aged-ivory studio background, grounded AAA real-time game character rendering, physically based materials, restrained palette, clean readable layout, no decorative typography.
+
+2. Canonical Profile Picture [PFP]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Tight square portrait of OMNIFRAME’s 3D avatar at his workstation, head and high collar filling most of the frame. He looks slightly past the viewer toward a side monitor with calm, intelligent, mildly irritated focus. The amber optic receives soft aged-ivory CRT light; the vermilion aperture glows dimly. A cigarette rests between two interface fingers near the lower edge without covering the face. Thin smoke crosses a dark field of blurred CRTs and repaired hardware. High-detail real-time 3D character render, strong silhouette, readable at Discord-avatar size, no RGB rainbow lighting.
+
+3. Ranked Match Interruption [PFP]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Square close portrait of OMNIFRAME turning away from an intense ranked match to answer an incoming message. Gaming headset rests around the high collar, the vermilion optical aperture contracts with time-dilation focus, and a compact matte-black vape is held loosely in one hand. His expression is dryly amused and slightly annoyed at the interruption but clearly engaged. Background contains a blurred tactical game interface without readable text, one ivory CRT, and one red system lamp. Grounded cinematic 3D rendering, no exaggerated holograms.
+
+4. Rain Window and Blunt [PFP]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Square atmospheric portrait of OMNIFRAME’s avatar beside the rain-covered virtual window of Unit 13-93. Distant arcology lights and red warning beacons blur behind him. He holds a hand-rolled blunt low beside the chest plate while smoke moves across the high collar. The amber optic is muted and the vermilion aperture is only a narrow ring. Reflective, severe, late-night mood; black, gunmetal, deep indigo, aged ivory and vermilion; premium 3D game cinematic, not tobacco-advertising glamour.
+
+5. OMNIFRAME and Kuro [PFP]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR and KURO//13 CAT ANCHOR. Square intimate portrait of OMNIFRAME seated in a repaired workstation chair with Kuro perched across one shoulder and the chair back. OMNIFRAME faces the viewer with a flat unimpressed expression while Kuro tracks an unseen cursor. The small aged-ivory oni mask and vermilion cord are visible. One warm CRT gives ivory edge light; one distant system panel lights the right-side interface seam in vermilion. High-detail 3D render, no smoking object in his mouth, clear small-icon readability.
+
+6. High-Gothic Operator Icon [PFP]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Formal square bust portrait of OMNIFRAME facing three-quarters toward the viewer in a structured matte-black high-collar operator coat with gunmetal clasps, aged-ivory chest plate and a single vermilion cord. The background resembles a dark server sanctuary built from vertical industrial machinery with one circular ivory terminal light behind the head. Quiet authority, restrained high-gothic composition, repaired surfaces, no religious insignia, no throne, no cape, no excessive armor.
+
+7. Minimal Symbolic Avatar [PFP]
+----------------------------------------------------------------------
+Minimal square graphic icon of OMNIFRAME’s avatar: matte-black synthetic side-profile silhouette, aged-ivory lower-face plate, one vermilion ocular aperture, one amber optical dot, two right audio-fin rings, and a thin gunmetal interface seam. An ivory oni-mask curve and Kuro’s black tail appear subtly in negative space. Flat black, gunmetal, aged ivory and vermilion design; no gradients, no text, no border; readable at 32 pixels.
+
+8. Workstation Key Art [Scene]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR and KURO//13 CAT ANCHOR. Wide cinematic key art of OMNIFRAME gaming and operating several systems inside Unit 13-93. The workstation mixes CRT displays, transparent panels, a primary gaming screen, server racks, speakers, controllers, repair tools, ashtrays, Vesper Black coffee, Redline Black soda, cigarette packs, a blunt, a compact vape and tangled cables. Kuro sits on warm hardware beside a progress display. Rain and fog cover the window. Every object looks used, repaired and functional. Restrained 21:9 cyberpunk composition with quiet space for desktop icons, no clean luxury gaming room, no rainbow RGB.
+
+9. Time-Dilation Visualization [Scene]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. OMNIFRAME activates subjective time dilation between a paused competitive game and an incoming chat message. His avatar remains nearly still while restrained translucent hand afterimages operate the keyboard, controller and terminal. The vermilion aperture contracts sharply; a cigarette ember and layered smoke ribbons appear almost frozen. Grounded cybernetic interface visualization, no magical lightning, no superhero energy, dark apartment, precise technical atmosphere.
+
+10. Reaction Image Sheet [Character sheet]
+----------------------------------------------------------------------
+Use the OMNIFRAME AVATAR ANCHOR. Create a consistent sheet of sixteen square reaction portraits: unimpressed, one second, ranked-match focus, dry laugh, disgust at broken code, quiet approval, that is fucked, mathematics resentment, sudden creative excitement, cold anger, protective concern, philosophical pause, system failure, exhausted-looking victory, smoking contemplation, and Kuro walked across the keyboard. Maintain exact avatar geometry, optics, plates, rings and collar in every panel. Simple dark backgrounds, high contrast, no text.
+
+11. Kuro Animation Model Sheet [Cat sheet]
+----------------------------------------------------------------------
+Use the KURO//13 CAT ANCHOR. Create a professional 3D animation model sheet for Kuro with front, three-quarter, side and rear views; walking, running, crouching, pouncing, climbing, grooming, sleeping on a server, sitting on a keyboard, attacking a vermilion cable, stealing a cigarette pack, watching a render progress bar, and wearing the oni mask in three positions. Expression studies: unimpressed, alert, angry, affectionate, startled, sleepy and mischievous. Physically believable cat anatomy, readable for later pixel-art conversion, neutral background, no UI or text.
+
+12. Smoking and Consumables Prop Sheet [Props]
+----------------------------------------------------------------------
+Create a grounded 3D prop sheet from OMNIFRAME’s world: battered black cigarette case, hand-rolled blunt, compact matte-black vape, blackened machine-part ashtray, mechanical lighter, Redline Black stimulant cola can, Vesper Black coffee cup, Nullleaf dark-red packet, Ghostmint cartridge, Wakewire gum, Static Bloom vapor module, Nightglass can, Pale Signal ivory paper tubes, Black Archive sealed tobacco case, and Choir Oil aromatic capsule. Used industrial design, black, gunmetal, aged ivory, deep indigo and vermilion; no real-world logos, no readable brand copy, no glossy advertisement layout.

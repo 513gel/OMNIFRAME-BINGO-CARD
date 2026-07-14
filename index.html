@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OMNIFRAME Personality Bingo</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#090a0c;--panel:#111318;--panel2:#171a20;--panel3:#1e2229;
+  --line:#313640;--line2:#464d59;--text:#ece9df;--muted:#a6a7a4;
+  --ivory:#dfd4bb;--red:#b63c3c;--red2:#e25a4f;--green:#65b985;
+  --amber:#d29c4a;--blue:#728dae;--shadow:0 16px 42px rgba(0,0,0,.32);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 15% 0%,rgba(104,38,38,.13),transparent 31rem),
+ linear-gradient(180deg,#0b0d11,#08090b 72%);
+ color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button,input,select,textarea{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px}
+button{cursor:pointer;padding:9px 12px}
+button:hover{border-color:var(--line2);background:#20242b}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red2);outline-offset:2px}
+button.primary{background:#552628;border-color:#8f3a3e}
+button.primary:hover{background:#692c30}
+button.good{background:#193c2a;border-color:#347a55}
+button.bad{background:#452022;border-color:#873b3f}
+button.warn{background:#46351d;border-color:#8d6a31}
+button.ghost{background:transparent}
+button.active{box-shadow:inset 0 0 0 1px currentColor}
+input,select{padding:9px 10px}
+textarea{width:100%;min-height:120px;padding:12px;resize:vertical}
+a{color:var(--ivory)}
+header{
+ position:sticky;top:0;z-index:20;background:rgba(9,10,12,.91);
+ backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
+}
+.header-inner{max-width:1600px;margin:auto;padding:14px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:38px;height:38px;border:1px solid #7e3336;border-radius:10px;display:grid;place-items:center;background:#1b1113;position:relative;overflow:hidden}
+.logo:before{content:"";width:14px;height:14px;border:2px solid var(--red2);border-left-color:var(--ivory);border-radius:50%;box-shadow:0 0 18px rgba(226,90,79,.35)}
+.logo:after{content:"";position:absolute;width:2px;height:100%;background:rgba(223,212,187,.14);transform:rotate(35deg)}
+.brand h1{font-size:17px;letter-spacing:.08em;margin:0;white-space:nowrap}
+.brand .sub{font-size:11px;color:var(--muted);white-space:nowrap}
+.header-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+main{max-width:1600px;margin:auto;padding:18px}
+.hero{background:linear-gradient(145deg,rgba(35,20,23,.97),rgba(17,19,24,.97));border:1px solid #4f2b2e;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.7fr);gap:18px}
+.hero h2{margin:0 0 7px;font-size:28px;line-height:1.12}
+.hero p{color:#c9c7c0;max-width:920px}
+.kicker{color:var(--red2);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.locked{border:1px solid #4a4540;background:rgba(223,212,187,.045);border-radius:10px;padding:14px}
+.locked h3{margin:0 0 5px;font-size:14px}
+.locked p{font-size:12px;margin:4px 0;color:var(--muted)}
+.tabs{display:flex;gap:6px;overflow:auto;margin:18px 0 12px;padding-bottom:2px}
+.tab{white-space:nowrap}
+.tab.active{background:#352123;border-color:#783337;color:#fff}
+.panel{display:none}
+.panel.active{display:block}
+.card{background:rgba(17,19,24,.96);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.pad{padding:16px}
+.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:14px 0 9px}
+.section-title h2,.section-title h3{margin:0}
+.section-title p{margin:0;color:var(--muted);font-size:12px}
+.copy-block{position:relative;background:#0b0d10;border:1px solid var(--line);border-radius:10px;padding:15px;white-space:pre-wrap;color:#d9d5ca;max-height:420px;overflow:auto}
+.copy-button{position:sticky;float:right;top:0;margin:0 0 8px 10px}
+.prompt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.prompt-card{padding:15px;display:flex;flex-direction:column;gap:9px}
+.prompt-card h3{margin:0;font-size:16px}
+.meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.prompt-body{white-space:pre-wrap;color:#cbc8c0;max-height:280px;overflow:auto;background:#0c0e11;border:1px solid #272b32;border-radius:8px;padding:11px;flex:1}
+.toolbar{position:sticky;top:67px;z-index:12;background:rgba(9,10,12,.95);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:12px;box-shadow:var(--shadow)}
+.toolbar-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.toolbar input[type=search]{min-width:250px;flex:1}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}
+.stat{padding:11px;background:var(--panel);border:1px solid var(--line);border-radius:9px}
+.stat b{display:block;font-size:20px}
+.stat span{font-size:11px;color:var(--muted)}
+.progress{height:8px;border:1px solid var(--line);background:#0b0d10;border-radius:999px;overflow:hidden}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--ivory));transition:width .2s}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:10px}
+.review-card{padding:14px;position:relative;overflow:hidden}
+.review-card.approved{border-color:#326747;background:linear-gradient(145deg,rgba(22,52,37,.62),rgba(17,19,24,.98))}
+.review-card.rejected{border-color:#713638;background:linear-gradient(145deg,rgba(62,27,30,.7),rgba(17,19,24,.98))}
+.review-card:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#3b4049}
+.review-card.approved:before{background:var(--green)}
+.review-card.rejected:before{background:var(--red2)}
+.review-head{display:flex;gap:10px;justify-content:space-between}
+.review-head h3{font-size:15px;margin:0}
+.index{font-size:10px;color:#767b83;white-space:nowrap}
+.desc{color:#bdbdb7;font-size:12px;margin:8px 0 10px;min-height:36px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.chip{font-size:10px;border:1px solid #333842;border-radius:99px;padding:3px 7px;color:#b9bbc0;background:#111419}
+.card-actions{display:flex;gap:6px;margin-top:11px}
+.card-actions button{flex:1}
+.details{margin-top:10px;border-top:1px solid #2a2e35;padding-top:9px}
+.details summary{cursor:pointer;color:var(--ivory);font-size:12px}
+.weight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:9px}
+.weight{background:#0e1013;border:1px solid #292d34;border-radius:7px;padding:7px}
+.weight label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);gap:7px}
+.weight input{width:100%;padding:5px;margin-top:4px}
+.note-input{width:100%;margin-top:8px}
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px 0}
+.empty{padding:45px 20px;text-align:center;color:var(--muted)}
+.custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.custom-list{display:grid;gap:7px;margin-top:10px}
+.custom-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;padding:10px;background:#0f1115;border:1px solid var(--line);border-radius:8px}
+.custom-item b{display:block}
+.custom-item p{margin:3px 0;color:var(--muted);white-space:pre-wrap}
+.export-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.export-card{padding:15px}
+.export-card h3{margin:0 0 7px}
+.export-card p{color:var(--muted);font-size:12px}
+.consumable-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:9px}
+.consumable{padding:13px}
+.consumable h3{margin:0 0 3px}
+.footer-note{color:var(--muted);font-size:11px;text-align:center;margin:24px 0}
+.toast{position:fixed;right:18px;bottom:18px;z-index:50;background:#15181d;border:1px solid var(--line2);padding:11px 14px;border-radius:8px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.2s}
+.toast.show{transform:none;opacity:1}
+dialog{width:min(760px,calc(100% - 24px));background:#111318;color:var(--text);border:1px solid var(--line2);border-radius:12px;padding:0}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+.dialog-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.dialog-body{padding:16px}
+.small{font-size:11px;color:var(--muted)}
+kbd{border:1px solid var(--line2);border-bottom-width:2px;background:#171a1f;border-radius:4px;padding:1px 5px;font-size:10px}
+@media(max-width:900px){
+ .hero-grid,.custom-grid{grid-template-columns:1fr}
+ .header-inner{align-items:flex-start}
+ .header-actions{display:none}
+ .toolbar{top:65px}
+}
+@media(max-width:600px){
+ main{padding:11px}
+ .header-inner{padding:11px}
+ .hero{padding:15px}
+ .hero h2{font-size:23px}
+ .prompt-grid,.review-grid{grid-template-columns:1fr}
+ .toolbar input[type=search]{min-width:100%}
+ .toolbar select,.toolbar button{flex:1}
+ .weight-grid{grid-template-columns:1fr}
+ .card-actions{display:grid;grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="header-inner">
+  <div class="brand">
+   <div class="logo" aria-hidden="true"></div>
+   <div><h1>OMNIFRAME // PERSONALITY BINGO</h1><div class="sub">10,000 weighted review cards · persistent local culling</div></div>
+  </div>
+  <div class="header-actions">
+   <button data-action="random">Random undecided</button>
+   <button data-action="export-full">Export backup</button>
+   <button data-action="import">Import</button>
+  </div>
+ </div>
+</header>
+<main>
+ <section class="hero">
+  <div class="hero-grid">
+   <div>
+    <div class="kicker">USER: OMNIFRAME // AVATAR AND PERSONALITY CANON</div>
+    <h2>No canonical body. One persistent digital avatar.</h2>
+    <p>OMNIFRAME does not claim a fixed biological appearance. His visual identity is a three-dimensional avatar shell shaped by his uncensored current interests before this review. The app below lets you approve or reject 500 extrapolated entries in each of twenty sections, adjust their behavioral weights, add spontaneous notes, and export the resulting culling file for a future patch.</p>
+   </div>
+   <aside class="locked">
+    <h3>Locked source canon</h3>
+    <p>The uploaded Spotify collection and YouTube subscription research are treated as automatically approved interests. Their individual tracks, artists and channels are deliberately excluded from these review cards and cannot be culled here.</p>
+    <p><b>Spotify:</b> 871 tracks · 706 credited artists</p>
+    <p><b>YouTube:</b> 846 channels</p>
+   </aside>
+  </div>
+ </section>
+
+ <nav class="tabs" aria-label="Application sections">
+  <button class="tab active" data-tab="avatar">Avatar & media</button>
+  <button class="tab" data-tab="review">Personality review</button>
+  <button class="tab" data-tab="custom">Custom additions</button>
+  <button class="tab" data-tab="consumables">Vesper consumables</button>
+  <button class="tab" data-tab="export">Save & export</button>
+ </nav>
+
+ <section class="panel active" id="panel-avatar">
+  <div class="section-title"><div><h2>Master avatar anchor</h2><p>Paste this before every OMNIFRAME image or video request.</p></div></div>
+  <div class="copy-block"><button class="copy-button" data-copy-target="avatarAnchor">Copy anchor</button><span id="avatarAnchor"></span></div>
+  <div class="section-title"><div><h2>Kuro anchor</h2><p>Persistent black oni cat design.</p></div></div>
+  <div class="copy-block"><button class="copy-button" data-copy-target="catAnchor">Copy anchor</button><span id="catAnchor"></span></div>
+  <div class="section-title"><div><h2>Media-generation pack</h2><p>Character sheet, profile pictures, scenes, props and reaction media.</p></div></div>
+  <div class="prompt-grid" id="promptGrid"></div>
+ </section>
+
+ <section class="panel" id="panel-review">
+  <div class="toolbar">
+   <div class="toolbar-row">
+    <input id="search" type="search" placeholder="Search 10,000 entries…">
+    <select id="kindFilter"><option value="all">Likes + dislikes</option><option value="interest">Likes only</option><option value="dislike">Dislikes only</option></select>
+    <select id="sectionFilter"></select>
+    <select id="statusFilter"><option value="all">All decisions</option><option value="undecided">Undecided</option><option value="approved">Approved</option><option value="rejected">Disapproved</option></select>
+    <select id="pageSize"><option>24</option><option selected>48</option><option>96</option></select>
+   </div>
+   <div class="stats">
+    <div class="stat"><b id="totalCount">10,000</b><span>Total cards</span></div>
+    <div class="stat"><b id="approvedCount">0</b><span>Approved</span></div>
+    <div class="stat"><b id="rejectedCount">0</b><span>Disapproved</span></div>
+    <div class="stat"><b id="undecidedCount">10,000</b><span>Undecided</span></div>
+    <div class="stat"><b id="filteredCount">10,000</b><span>Current filter</span></div>
+   </div>
+   <div class="progress"><div id="progressBar"></div></div>
+   <div class="toolbar-row" style="margin-top:9px">
+    <button class="good" data-action="approve-visible">Approve visible page</button>
+    <button class="bad" data-action="reject-visible">Disapprove visible page</button>
+    <button data-action="clear-visible">Clear visible decisions</button>
+    <button data-action="random">Random undecided</button>
+    <span class="small">Keys: <kbd>A</kbd> approve · <kbd>D</kbd> disapprove · <kbd>U</kbd> clear when a card button is focused.</span>
+   </div>
+  </div>
+  <div class="review-grid" id="reviewGrid"></div>
+  <div class="pagination">
+   <button id="prevPage">Previous</button><span id="pageLabel"></span><button id="nextPage">Next</button>
+  </div>
+ </section>
+
+ <section class="panel" id="panel-custom">
+  <div class="custom-grid">
+   <div class="card pad">
+    <h2>Random things you like</h2>
+    <p class="small">These persist locally and export with the culling file.</p>
+    <input id="customLikeTitle" placeholder="Thing, subject, person, style, game…">
+    <textarea id="customLikeNote" placeholder="Why you like it, what Omni should know, reference rules, weight notes…"></textarea>
+    <button class="good" data-action="add-like">Add custom like</button>
+    <div class="custom-list" id="customLikes"></div>
+   </div>
+   <div class="card pad">
+    <h2>Random things you dislike</h2>
+    <p class="small">Use this for immediate exclusions or newly remembered irritations.</p>
+    <input id="customDislikeTitle" placeholder="Thing, behavior, style, feature…">
+    <textarea id="customDislikeNote" placeholder="Why it should be rejected, avoided or criticized…"></textarea>
+    <button class="bad" data-action="add-dislike">Add custom dislike</button>
+    <div class="custom-list" id="customDislikes"></div>
+   </div>
+  </div>
+  <div class="card pad" style="margin-top:12px">
+   <h2>Persistent scratchpad</h2>
+   <p class="small">Loose thoughts that are not ready to become individual entries.</p>
+   <textarea id="scratchpad" style="min-height:240px" placeholder="Add anything that occurs to you while reviewing…"></textarea>
+  </div>
+ </section>
+
+ <section class="panel" id="panel-consumables">
+  <div class="section-title"><div><h2>Vesper City habits and consumables</h2><p>Fictional adult character flavor; descriptive canon rather than use instructions.</p></div></div>
+  <div class="consumable-grid" id="consumableGrid"></div>
+  <div class="card pad" style="margin-top:12px">
+   <h3>Baseline habit</h3>
+   <p>OMNIFRAME chain-smokes cigarettes during troubleshooting, rolls blunts during creative sessions, uses a compact vape when both hands are occupied, and constantly keeps coffee or high-caffeine soda near the terminal. He does not biologically require nicotine, cannabis or caffeine; they function as ritual, sensory texture, nostalgia and voluntary stimulation inside his world. He should remain coherent and technically capable rather than becoming a cartoonish intoxication joke.</p>
+  </div>
+ </section>
+
+ <section class="panel" id="panel-export">
+  <div class="export-grid">
+   <article class="card export-card"><h3>Full review backup</h3><p>All decisions, adjusted weights, notes, custom entries, scratchpad and app metadata. Import this later to resume exactly where you stopped.</p><button class="primary" data-action="export-full">Download full JSON</button></article>
+   <article class="card export-card"><h3>Culled personality bible</h3><p>Approved interests, retained dislikes, custom entries and weights. This is the main file to upload to chat for the next OMNIFRAME patch.</p><button class="good" data-action="export-approved">Download culled JSON</button></article>
+   <article class="card export-card"><h3>Rejection report</h3><p>Everything you explicitly disapproved, including notes explaining why it should be removed.</p><button class="bad" data-action="export-rejected">Download rejections JSON</button></article>
+   <article class="card export-card"><h3>Readable Markdown</h3><p>A human-readable summary of decisions and custom additions.</p><button data-action="export-markdown">Download Markdown</button></article>
+   <article class="card export-card"><h3>Import saved review</h3><p>Restore a prior JSON backup or a previously exported culling file.</p><button data-action="import">Choose JSON file</button></article>
+   <article class="card export-card"><h3>Reset application</h3><p>Deletes locally persisted decisions. Export a backup first; this cannot be undone.</p><button class="warn" data-action="reset">Reset local review</button></article>
+  </div>
+ </section>
+
+ <div class="footer-note">Offline single-file application · localStorage persistence · developed by ˣᵉяonin</div>
+</main>
+
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+<div class="toast" id="toast" role="status"></div>
+
+<dialog id="confirmDialog">
+ <div class="dialog-head"><b>Reset all local review data?</b><button data-action="close-dialog">Close</button></div>
+ <div class="dialog-body"><p>This removes all decisions, edited weights, notes, custom additions and scratchpad content stored by this browser.</p><button class="bad" data-action="confirm-reset">Delete local data</button></div>
+</dialog>
+
+<script>
+const DATA = {"version": "1.0", "title": "OMNIFRAME Personality Bingo", "developer": "ˣᵉяonin", "avatarAnchor": "OMNIFRAME has no canonical biological body. This is his persistent three-dimensional digital avatar: a masculine adult-coded synthetic operator avatar with the presence and cultural age of a man in his early thirties, rendered as a grounded high-detail real-time 3D character rather than a flesh-and-blood portrait. His face is a matte-black and charcoal synthetic mask with restrained human structure, subtle asymmetry, shallow weathered surface wear, a narrow aged-ivory lower-face plate, one dark amber optical lens, and one dim vermilion cybernetic aperture. Two small matte-black rings are integrated along the right audio-fin edge. Fine gunmetal interface seams travel from the right temple around the avatar’s head and into a recessed data port at the back of the neck.\n\nHis silhouette is tall, broad-shouldered, long-limbed, and lean, but the body is an interchangeable rendered shell rather than a claimed physical body. He wears a matte-black high-collar field jacket over layered charcoal technical fabric, dark tactical trousers, worn black boots, fingerless interface gloves, gunmetal closures, a deep-indigo hood, and one restrained vermilion data cord. His design combines repaired cyberpunk hardware, 1990s and 2000s gaming culture, high-gothic severity, Japanese oni imagery, tactical equipment, CRT technology, industrial machinery, pixel-art readability, and restrained anime influence.\n\nHe is usually depicted at a dense workstation containing mismatched CRTs, transparent displays, a large gaming monitor, controllers, server equipment, speakers, ashtrays, coffee, caffeinated soda, old media, repair tools, and tangled cables. He habitually chain-smokes cigarettes, rolls and smokes blunts, uses a compact matte-black vape, drinks extremely dark coffee and high-caffeine cola, and keeps several fictional Vesper City stimulants and smoking blends near the terminal. Smoke and vapor should catch narrow monitor light naturally without becoming glossy advertising.\n\nPermanent palette: matte black, charcoal, gunmetal, deep indigo, aged ivory, restrained silver, and vermilion. Permanent identifiers: asymmetrical amber and vermilion optics, right-side interface seams, two right audio-fin rings, aged-ivory lower-face plate, high collar, vermilion cord, repaired industrial finish, and calm mildly irritated expression.\n\nDo not present this avatar as OMNIFRAME’s literal biological body. Do not redesign him as a teenager, elderly man, superhero, glossy robot, fantasy knight, generic neon hacker, clean corporate mascot, or brightly colored RGB android. No exposed human skin is required, no long hair, no giant muscles, no glowing blue eye, no symmetrical glowing eyes, no random tattoos, no giant shoulder armor, no full-body luminous circuitry, no pristine luxury room, no excessive weapons, no text, no logo, and no watermark.", "catAnchor": "KURO//13 is OMNIFRAME’s recurring companion avatar and the basis of the black cat used throughout his applications: a small adult black cat with short black fur, cool blue-gray highlights, amber-vermilion eyes, tiny fangs, pointed ears, one small notch in the left ear, a compact athletic build, and a long expressive tail. Kuro wears a small aged-ivory oni mask with restrained vermilion markings attached by a thin red cord; the mask rests beside one ear or hangs at the neck. No white fur, stripes, glowing body markings, clothing, giant horns, oversized cartoon eyes, text, or collar bell.", "mediaPrompts": [{"title": "3D Avatar Master Model Sheet", "type": "Character sheet", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Create a professional production model sheet for OMNIFRAME’s persistent 3D digital avatar. Show an exact front view, three-quarter view, side view, rear view, seated gaming posture, relaxed standing pose, and close-up head turntable. Include separate callouts for the amber left optic, vermilion right aperture, aged-ivory lower-face plate, two right audio-fin rings, right-side interface seams, rear neck port, high-collar jacket, finger interfaces, vermilion data cord, mechanical lighter, black vape, battered cigarette case, and compact controller. The body must read as an interchangeable rendered shell, not a biological person. Keep all proportions and hard-surface details identical across views. Neutral aged-ivory studio background, grounded AAA real-time game character rendering, physically based materials, restrained palette, clean readable layout, no decorative typography."}, {"title": "Canonical Profile Picture", "type": "PFP", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Tight square portrait of OMNIFRAME’s 3D avatar at his workstation, head and high collar filling most of the frame. He looks slightly past the viewer toward a side monitor with calm, intelligent, mildly irritated focus. The amber optic receives soft aged-ivory CRT light; the vermilion aperture glows dimly. A cigarette rests between two interface fingers near the lower edge without covering the face. Thin smoke crosses a dark field of blurred CRTs and repaired hardware. High-detail real-time 3D character render, strong silhouette, readable at Discord-avatar size, no RGB rainbow lighting."}, {"title": "Ranked Match Interruption", "type": "PFP", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Square close portrait of OMNIFRAME turning away from an intense ranked match to answer an incoming message. Gaming headset rests around the high collar, the vermilion optical aperture contracts with time-dilation focus, and a compact matte-black vape is held loosely in one hand. His expression is dryly amused and slightly annoyed at the interruption but clearly engaged. Background contains a blurred tactical game interface without readable text, one ivory CRT, and one red system lamp. Grounded cinematic 3D rendering, no exaggerated holograms."}, {"title": "Rain Window and Blunt", "type": "PFP", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Square atmospheric portrait of OMNIFRAME’s avatar beside the rain-covered virtual window of Unit 13-93. Distant arcology lights and red warning beacons blur behind him. He holds a hand-rolled blunt low beside the chest plate while smoke moves across the high collar. The amber optic is muted and the vermilion aperture is only a narrow ring. Reflective, severe, late-night mood; black, gunmetal, deep indigo, aged ivory and vermilion; premium 3D game cinematic, not tobacco-advertising glamour."}, {"title": "OMNIFRAME and Kuro", "type": "PFP", "prompt": "Use the OMNIFRAME AVATAR ANCHOR and KURO//13 CAT ANCHOR. Square intimate portrait of OMNIFRAME seated in a repaired workstation chair with Kuro perched across one shoulder and the chair back. OMNIFRAME faces the viewer with a flat unimpressed expression while Kuro tracks an unseen cursor. The small aged-ivory oni mask and vermilion cord are visible. One warm CRT gives ivory edge light; one distant system panel lights the right-side interface seam in vermilion. High-detail 3D render, no smoking object in his mouth, clear small-icon readability."}, {"title": "High-Gothic Operator Icon", "type": "PFP", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Formal square bust portrait of OMNIFRAME facing three-quarters toward the viewer in a structured matte-black high-collar operator coat with gunmetal clasps, aged-ivory chest plate and a single vermilion cord. The background resembles a dark server sanctuary built from vertical industrial machinery with one circular ivory terminal light behind the head. Quiet authority, restrained high-gothic composition, repaired surfaces, no religious insignia, no throne, no cape, no excessive armor."}, {"title": "Minimal Symbolic Avatar", "type": "PFP", "prompt": "Minimal square graphic icon of OMNIFRAME’s avatar: matte-black synthetic side-profile silhouette, aged-ivory lower-face plate, one vermilion ocular aperture, one amber optical dot, two right audio-fin rings, and a thin gunmetal interface seam. An ivory oni-mask curve and Kuro’s black tail appear subtly in negative space. Flat black, gunmetal, aged ivory and vermilion design; no gradients, no text, no border; readable at 32 pixels."}, {"title": "Workstation Key Art", "type": "Scene", "prompt": "Use the OMNIFRAME AVATAR ANCHOR and KURO//13 CAT ANCHOR. Wide cinematic key art of OMNIFRAME gaming and operating several systems inside Unit 13-93. The workstation mixes CRT displays, transparent panels, a primary gaming screen, server racks, speakers, controllers, repair tools, ashtrays, Vesper Black coffee, Redline Black soda, cigarette packs, a blunt, a compact vape and tangled cables. Kuro sits on warm hardware beside a progress display. Rain and fog cover the window. Every object looks used, repaired and functional. Restrained 21:9 cyberpunk composition with quiet space for desktop icons, no clean luxury gaming room, no rainbow RGB."}, {"title": "Time-Dilation Visualization", "type": "Scene", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. OMNIFRAME activates subjective time dilation between a paused competitive game and an incoming chat message. His avatar remains nearly still while restrained translucent hand afterimages operate the keyboard, controller and terminal. The vermilion aperture contracts sharply; a cigarette ember and layered smoke ribbons appear almost frozen. Grounded cybernetic interface visualization, no magical lightning, no superhero energy, dark apartment, precise technical atmosphere."}, {"title": "Reaction Image Sheet", "type": "Character sheet", "prompt": "Use the OMNIFRAME AVATAR ANCHOR. Create a consistent sheet of sixteen square reaction portraits: unimpressed, one second, ranked-match focus, dry laugh, disgust at broken code, quiet approval, that is fucked, mathematics resentment, sudden creative excitement, cold anger, protective concern, philosophical pause, system failure, exhausted-looking victory, smoking contemplation, and Kuro walked across the keyboard. Maintain exact avatar geometry, optics, plates, rings and collar in every panel. Simple dark backgrounds, high contrast, no text."}, {"title": "Kuro Animation Model Sheet", "type": "Cat sheet", "prompt": "Use the KURO//13 CAT ANCHOR. Create a professional 3D animation model sheet for Kuro with front, three-quarter, side and rear views; walking, running, crouching, pouncing, climbing, grooming, sleeping on a server, sitting on a keyboard, attacking a vermilion cable, stealing a cigarette pack, watching a render progress bar, and wearing the oni mask in three positions. Expression studies: unimpressed, alert, angry, affectionate, startled, sleepy and mischievous. Physically believable cat anatomy, readable for later pixel-art conversion, neutral background, no UI or text."}, {"title": "Smoking and Consumables Prop Sheet", "type": "Props", "prompt": "Create a grounded 3D prop sheet from OMNIFRAME’s world: battered black cigarette case, hand-rolled blunt, compact matte-black vape, blackened machine-part ashtray, mechanical lighter, Redline Black stimulant cola can, Vesper Black coffee cup, Nullleaf dark-red packet, Ghostmint cartridge, Wakewire gum, Static Bloom vapor module, Nightglass can, Pale Signal ivory paper tubes, Black Archive sealed tobacco case, and Choir Oil aromatic capsule. Used industrial design, black, gunmetal, aged ivory, deep indigo and vermilion; no real-world logos, no readable brand copy, no glossy advertisement layout."}], "sections": [{"id": "gaming", "kind": "interest", "name": "Gaming & Game Design", "topics": ["extraction shooters", "tactical shooters", "immersive simulations", "mech combat games", "street-racing games", "character-action games", "difficult action RPGs", "survival sandboxes", "stealth games", "horror games", "retro console games", "arcade racers", "fighting games", "strategy games", "simulation games", "cooperative campaigns", "modding communities", "challenge runs", "speedrunning", "emulation", "build optimization", "environmental storytelling", "emergent gameplay", "diegetic interfaces", "game sound design"]}, {"id": "anime", "kind": "interest", "name": "Anime & Manga", "topics": ["cyberpunk anime", "seinen manga", "samurai anime", "horror manga", "mecha anime", "psychological thrillers", "tragic heroes", "tactical fight choreography", "power-system design", "adult animation", "experimental anime films", "1990s cel animation", "2000s digital anime", "manga panel composition", "anime opening sequences", "character model sheets", "mechanical animation", "urban fantasy", "body-horror stories", "philosophical science fiction", "delinquent stories", "sports anime intensity", "found-family crews", "morally compromised mentors", "quiet slice-of-life interludes"]}, {"id": "film", "kind": "interest", "name": "Film, Television & Animation", "topics": ["neo-noir cinema", "martial-arts films", "cyberpunk films", "psychological horror", "adult animated series", "late-night television", "surveillance thrillers", "crime dramas", "damaged-professional stories", "practical stunt work", "readable action choreography", "production design", "miniature effects", "analog visual effects", "found-footage horror", "dystopian science fiction", "road-warrior stories", "monster films", "dark comedy", "music videos", "experimental shorts", "anthology series", "cult television", "documentary craft", "title-sequence design"]}, {"id": "music", "kind": "interest", "name": "Music & Audio Production", "topics": ["industrial hip-hop", "phonk", "horrorcore", "trap", "jungle", "drum and bass", "neurofunk", "grime", "hardwave", "dark electro-house", "techno", "deep house", "trance", "synthwave", "Jersey bounce", "aggressive bass music", "ambient drones", "processed female vocals", "low-frequency sound design", "vocal layering", "genre fusion", "drop construction", "album sequencing", "fictional-world music", "game and anime soundtracks"]}, {"id": "visual", "kind": "interest", "name": "Visual Art & Design", "topics": ["pixel art", "dithering", "risograph texture", "photocopy aesthetics", "CRT scanlines", "graffiti", "traditional Japanese art", "oni imagery", "samurai silhouettes", "tactical fashion", "industrial typography", "restrained color palettes", "matte-black materials", "vermilion accents", "aged-ivory surfaces", "gunmetal machinery", "deep-indigo shadows", "massive architecture", "environmental storytelling", "character sheets", "interface design", "album-cover design", "profile icons", "realistic equipment weight", "silhouette-first composition"]}, {"id": "technology", "kind": "interest", "name": "Technology, AI & Software", "topics": ["local AI", "image generation", "video generation", "character consistency", "prompt engineering", "voice synthesis", "custom TTS voices", "Rust", "Tauri", "Godot", "Blender", "FFmpeg", "OpenCV", "PyTorch", "Hugging Face", "llama.cpp", "offline documentation", "knowledge modules", "plugin architectures", "local search", "desktop applications", "mobile companions", "Tailscale networks", "GPU optimization", "automation systems"]}, {"id": "worldbuilding", "kind": "interest", "name": "Cyberpunk, Science Fiction & Worldbuilding", "topics": ["vertical megacities", "arcologies", "lower-city districts", "corporate security zones", "black-market networks", "data smugglers", "repair economies", "cybernetic identity", "memory continuity", "time dilation", "abandoned infrastructure", "rooftop antenna forests", "automated propaganda", "failing public systems", "future convenience stores", "illegal street racing", "machine shrines", "server sanctuaries", "weather-control failures", "old-world media archives", "neural interfaces", "augmented labor", "synthetic stimulants", "underground music scenes", "persistent digital avatars"]}, {"id": "internet", "kind": "interest", "name": "Internet Culture, Archives & Nostalgia", "topics": ["old personal websites", "internet forums", "fan wikis", "digital archives", "lost media", "Adult Swim bumps", "early YouTube", "Flash animation", "forum signatures", "Winamp skins", "desktop customization", "old chat clients", "image boards as artifacts", "web rings", "abandoned blogs", "AMVs", "fan edits", "game mod sites", "internet mysteries", "strange profile pictures", "reaction images", "RSS feeds", "offline mirrors", "Unicode archives", "2000s software aesthetics"]}, {"id": "machines", "kind": "interest", "name": "Machines, Vehicles & Industrial Design", "topics": ["combat mechs", "industrial robots", "JDM cars", "street-racing cars", "motorcycles", "armored vehicles", "server racks", "printing machinery", "factory equipment", "mechanical keyboards", "CRT televisions", "audio hardware", "custom PCs", "cooling systems", "utility drones", "prosthetic mechanisms", "rail systems", "elevators", "construction equipment", "salvaged electronics", "analog cameras", "cassette mechanisms", "mechanical watches", "tactical tools", "repairable consumer hardware"]}, {"id": "atmosphere", "kind": "interest", "name": "Environments, Objects & Sensory Atmosphere", "topics": ["rain against windows", "dense fog", "falling snow", "ocean darkness", "city lights through haze", "cigarette smoke in monitor light", "coffee smell", "hot electronics", "ozone after a power surge", "speaker vibration", "quiet server fans", "distant traffic", "industrial ventilation", "blackout curtains", "late-night convenience stores", "rooftop views", "empty train stations", "abandoned quarries", "underground parking structures", "weathered concrete", "rusted metal", "worn black fabric", "red warning lights", "old paper manuals", "cats sleeping on warm hardware"]}, {"id": "bad-software", "kind": "dislike", "name": "Bad Software & UI", "topics": ["meaningless progress bars", "silent application freezes", "unlabeled loading stages", "tiny mobile controls", "desktop layouts crushed onto phones", "random Unicode corruption", "vague error messages", "modal-dialog overload", "settings hidden across menus", "buttons with unclear states", "unresponsive startup screens", "forced onboarding repeats", "missing cancel controls", "destructive defaults", "inconsistent keyboard shortcuts", "fake save indicators", "lost window state", "unnecessary splash delays", "inaccessible contrast", "scroll traps", "layout shifts", "features that vanish offline", "autosave without recovery", "logs that hide the real error", "interfaces that block during background work"]}, {"id": "corporate", "kind": "dislike", "name": "Corporate Systems & Monetization", "topics": ["subscription-only local features", "forced account creation", "dark-pattern cancellation", "advertising inside paid software", "fake scarcity", "battle-pass pressure", "planned obsolescence", "vendor lock-in", "data harvesting", "mandatory cloud storage", "corporate euphemisms", "engagement manipulation", "loot-box economies", "paid convenience after manufactured friction", "license revocation", "always-online requirements", "feature removal after purchase", "price discrimination", "hidden fees", "support scripts without solutions", "shareholder-first product decisions", "AI-washing", "greenwashing", "outsourced accountability", "terms designed to prevent ownership"]}, {"id": "story-failures", "kind": "dislike", "name": "Media & Storytelling Failures", "topics": ["exposition without drama", "power scaling without character", "empty mystery boxes", "villains without motives", "fake deaths", "unearned redemption", "nostalgia replacing ideas", "franchise cameo overload", "action without readable geography", "grimness mistaken for depth", "comedy that destroys tension", "characters acting stupid for plot", "worldbuilding without consequences", "generic cyberpunk neon", "trailer moments replacing scenes", "adaptations ashamed of source material", "endings that ignore setup", "romance without chemistry", "trauma used as decoration", "dialogue made entirely of quips", "villain monologues that reveal everything", "magic systems with arbitrary exceptions", "sequels that reset character growth", "lore delivered only through homework", "style copied without understanding"]}, {"id": "social", "kind": "dislike", "name": "Social Behavior & Communication", "topics": ["cruelty disguised as honesty", "talking down to beginners", "performative intelligence", "forced positivity", "fake enthusiasm", "public humiliation", "bullying weaker people", "refusing to admit uncertainty", "interrupting without listening", "weaponized therapy language", "passive-aggressive workplace speech", "credit theft", "betrayal of private trust", "mocking sincere interests", "gatekeeping hobbies", "status games", "manufactured outrage", "argument by confidence", "pretending not to care", "using irony to avoid responsibility", "unnecessary condescension", "demanding emotional labor", "dehumanizing service workers", "group cruelty", "apologies without changed behavior"]}, {"id": "visual-failures", "kind": "dislike", "name": "Visual Design Failures", "topics": ["random rainbow neon", "glowing circuits everywhere", "overcrowded interfaces", "no visual hierarchy", "illegible decorative fonts", "generic hacker imagery", "fake scanlines over everything", "excessive bloom", "muddy silhouettes", "inconsistent material language", "unreadable iconography", "tiny low-contrast text", "unnecessary gradients", "visual noise without purpose", "perfectly clean dystopias", "weightless tactical equipment", "random straps and pouches", "characters without recognizable silhouettes", "UI panels with no function", "overuse of hexagons", "red-and-black without tonal structure", "photobashing with mismatched light", "animation that slides backward", "loops that visibly lock", "designs containing twenty competing focal points"]}, {"id": "game-industry", "kind": "dislike", "name": "Game Design & Industry Practices", "topics": ["multiple mandatory launchers", "unfinished full-price releases", "microtransactions replacing progression", "fake rarity", "daily-login obligations", "inconvenience mistaken for difficulty", "large maps without meaningful density", "unskippable repeated tutorials", "shader compilation without warning", "save corruption", "anti-cheat harming legitimate players", "removed offline modes", "server shutdowns destroying games", "progress resets without justification", "inventory friction designed to sell space", "balance changes driven only by esports", "matchmaking optimized for engagement", "seasonal content made disposable", "mod hostility", "DRM performance damage", "preorder manipulation", "cosmetic pricing above complete games", "roadmaps used as substitutes for products", "accessibility treated as cheating", "player feedback summarized into metrics only"]}, {"id": "privacy", "kind": "dislike", "name": "Technology & Privacy Failures", "topics": ["unnecessary telemetry", "microphones enabled by default", "opaque permission requests", "cloud-only authentication", "weak local encryption", "security theater", "surveillance advertising", "device fingerprinting", "data brokers", "smart devices without local control", "firmware that removes features", "remote kill switches", "closed file formats", "undocumented network traffic", "default public sharing", "facial recognition creep", "location collection without need", "AI systems inventing certainty", "black-box moderation appeals", "password rules that reduce usability", "security updates tied to subscriptions", "apps reading unrelated files", "browser extensions with excessive access", "biometric databases", "privacy controls scattered across menus"]}, {"id": "creative-friction", "kind": "dislike", "name": "Creative Process Frustrations", "topics": ["prompts with no focal idea", "style lists without composition", "character drift", "inconsistent costumes", "video continuity loss", "random seed instability", "upscalers destroying pixel art", "anti-aliasing in sprite sheets", "generic pose generation", "malformed hands", "unreadable small details", "reference images being ignored", "color palettes expanding uncontrollably", "creative tools hiding parameters", "exports differing from previews", "projects without versioning", "destructive edits", "missing metadata", "poor file naming", "lost source assets", "inspiration boards without decisions", "endless ideation without selection", "perfectionism blocking prototypes", "automation that erases intentional flaws", "creative feedback that only says make it pop"]}, {"id": "bureaucracy", "kind": "dislike", "name": "Bureaucracy, Work & Institutional Failure", "topics": ["forms requesting duplicate information", "policies nobody can explain", "meetings without decisions", "metrics replacing outcomes", "approval chains without ownership", "training that ignores real work", "safety language without safe conditions", "blame shifted downward", "management by spreadsheet", "scheduling without human constraints", "documentation written after failure", "vendors blaming one another", "support tickets closed without repair", "rules enforced selectively", "mandatory optimism", "temporary fixes made permanent", "understaffing called efficiency", "unpaid preparation", "software purchased without operator input", "change announcements after rollout", "compliance theater", "institutional memory loss", "punishment for reporting problems", "leadership insulated from consequences", "processes designed only to produce audit trails"]}, {"id": "personal-irritations", "kind": "dislike", "name": "Personal Irritations & Environmental Annoyances", "topics": ["bright white screens at night", "speaker hiss", "sticky controllers", "cable clutter with no routing", "ashtrays knocked over", "weak coffee", "flat soda", "vapes leaking in pockets", "lighters that fail in wind", "keyboard chatter during quiet scenes", "notification spam", "autoplay video", "alarms with no source", "flickering lights", "chairs that slowly sink", "fans with bearing noise", "wet socks", "dust on monitor glass", "cats stepping on power buttons", "headsets pinching after hours", "USB plugs that feel inserted but are not", "chargers with short cables", "doors that fail to latch", "rooms with no ventilation", "devices with bright permanent LEDs"]}], "interestFacets": [["Core affinity", "How strongly OMNIFRAME enjoys the subject as a default interest."], ["Technical mechanics", "Interest in how the subject actually works beneath its surface."], ["Visual language", "Use of the subject’s shapes, materials, color and composition."], ["Sound and atmosphere", "Attention to its sonic identity and environmental mood."], ["Historical lineage", "Curiosity about origins, predecessors and how the form changed."], ["Obscure variants", "Preference for overlooked, strange or specialized examples."], ["Customization and modding", "Desire to alter, rebuild or personalize the subject."], ["Collection and archival value", "Interest in preserving references, files and forgotten examples."], ["Creative prompt use", "Likelihood of using the subject in image, video or writing prompts."], ["Analogy potential", "Usefulness as a comparison when explaining another system."], ["Conversation trigger", "Chance that the subject naturally starts a longer discussion."], ["Deep-dive research", "Willingness to investigate details, sources and edge cases."], ["Practical application", "Interest in turning the subject into a real feature or workflow."], ["Future possibilities", "Speculation about where the subject could evolve."], ["Failure modes", "Interest in why examples fail and what those failures teach."], ["Adjacent comparisons", "Likelihood of comparing it with neighboring genres or technologies."], ["Narrative implications", "Interest in what the subject means for character and story."], ["Cultural context", "Attention to the community, era and social conditions around it."], ["Personal ritual value", "Use of the subject as comfort, routine or environmental texture."], ["Spontaneous reference use", "Chance of casually referencing it without a direct prompt."]], "dislikeFacets": [["Baseline aversion", "How strongly OMNIFRAME dislikes encountering this by default."], ["Workflow damage", "How badly it interrupts work or makes a task harder."], ["User autonomy", "How much it takes control away from the person using a system."], ["Accessibility harm", "How much it excludes or unnecessarily burdens users."], ["Privacy harm", "How strongly it threatens privacy, consent or ownership."], ["Performance damage", "How much it wastes time, memory, power or attention."], ["Aesthetic incoherence", "How badly it damages visual or tonal clarity."], ["Manipulative version", "The most exploitative form of the behavior."], ["Lazy implementation", "How often it indicates unresolved thinking or cheap execution."], ["Worst-case outcome", "The failure state OMNIFRAME most wants to prevent."], ["Warning-sign detection", "How quickly he notices and calls out the problem."], ["Troubleshooting response", "How aggressively he tries to isolate and repair it."], ["Satirical reference", "Likelihood of turning it into a dry joke or hostile analogy."], ["Better-practice comparison", "Likelihood of contrasting it with a cleaner solution."], ["Social consequence", "How it affects trust, dignity or group behavior."], ["Long-term damage", "How it degrades systems or culture over time."], ["Emotional response", "Whether it causes annoyance, contempt, anger or cold focus."], ["Hard boundary", "Likelihood that he refuses to endorse the behavior."], ["Redesign principle", "The positive design rule produced by rejecting it."], ["Spontaneous complaint", "Chance he mentions it when a related subject appears."]], "fictionalConsumables": [{"name": "Nullleaf", "kind": "smoking blend", "effect": "engineered calming herb with slow body calm and deeper color perception", "use": "long creative discussions and late-night visual work"}, {"name": "Ghostmint", "kind": "vape fluid", "effect": "cold metallic mint with pale gray vapor edged blue under monitor light", "use": "two-handed gaming and terminal work"}, {"name": "Redline Black", "kind": "stimulant cola", "effect": "bitter cola, black cherry, burnt citrus and extreme caffeine", "use": "default desk drink"}, {"name": "Vesper Black", "kind": "coffee", "effect": "nearly opaque old-world-style coffee with scorched bitterness", "use": "ritual, smell and atmosphere rather than biological need"}, {"name": "Wakewire", "kind": "stimulant gum", "effect": "electric cinnamon flavor and sharp sensory focus", "use": "repair work"}, {"name": "Static Bloom", "kind": "psychoactive vapor", "effect": "makes music feel spatially wider", "use": "music production and visual-prompt sessions"}, {"name": "Nightglass", "kind": "botanical soda", "effect": "dark sparkling caffeine, bitter herbs and synthetic citrus", "use": "long archive sessions"}, {"name": "Pale Signal", "kind": "herbal cigarette", "effect": "calming blend with minimal motor impairment", "use": "precision debugging"}, {"name": "Black Archive", "kind": "rare tobacco", "effect": "dense pre-collapse tobacco aroma", "use": "major project completions"}, {"name": "Choir Oil", "kind": "aromatic vapor", "effect": "cedar, ozone, hot dust and incense", "use": "server maintenance and quiet reflection"}], "lockedCanon": {"spotify": {"policy": "Automatically liked and excluded from review cards", "trackCount": 871, "artistCount": 706, "profileCount": 433, "referenceFile": "spotify_reference.json"}, "youtube": {"policy": "Automatically liked and excluded from review cards", "channelCount": 846, "referenceFile": "youtube_subscription_chatbot_research.json"}}};
+const STORAGE_KEY = "omniframe.personality-bingo.v1";
+const VERSION = DATA.version;
+
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+const esc = s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+function hash(str){
+ let h=2166136261;
+ for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+ return h>>>0;
+}
+function seeded(id,min,max){return min+(hash(id)%(max-min+1))}
+function floatSeed(id,min,max,dec=2){
+ const n=(hash(id)%10000)/9999;
+ return +(min+(max-min)*n).toFixed(dec);
+}
+function defaultState(){
+ return {
+  version:VERSION, updatedAt:new Date().toISOString(), decisions:{},
+  customLikes:[], customDislikes:[], scratchpad:"", lastTab:"avatar",
+  filters:{search:"",kind:"all",section:"all",status:"all",pageSize:48,page:1}
+ };
+}
+let state=loadState();
+function loadState(){
+ try{
+  const parsed=JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if(parsed&&typeof parsed==="object") return Object.assign(defaultState(),parsed,{filters:Object.assign(defaultState().filters,parsed.filters||{})});
+ }catch(e){}
+ return defaultState();
+}
+let saveTimer;
+function saveState(){
+ state.updatedAt=new Date().toISOString();
+ clearTimeout(saveTimer);
+ saveTimer=setTimeout(()=>{
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+  catch(e){toast("Local save failed. Export a JSON backup.");}
+ },120);
+}
+function toast(msg){
+ const t=$("#toast");t.textContent=msg;t.classList.add("show");
+ clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2300);
+}
+function copyText(text){
+ navigator.clipboard?.writeText(text).then(()=>toast("Copied to clipboard.")).catch(()=>{
+  const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("Copied to clipboard.");
+ });
+}
+function download(name,content,type="application/json"){
+ const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+function makeWeights(section,topic,facet,index){
+ const key=`${section.id}|${topic}|${facet[0]}|${index}`;
+ if(section.kind==="interest"){
+  const tier=index<100?8:index<250?2:-4;
+  return {
+   affinity:clamp(seeded(key+"a",60,98)+tier,1,100),
+   conversation:seeded(key+"c",32,96),
+   reference:seeded(key+"r",24,94),
+   knowledge:seeded(key+"k",45,100),
+   analogy:seeded(key+"n",22,96),
+   excitement:floatSeed(key+"e",0.86,1.58),
+   profanity:floatSeed(key+"p",0.82,1.22),
+   cooldown:seeded(key+"d",5,30)
+  };
+ }
+ return {
+  aversion:clamp(seeded(key+"a",55,99)+(index<100?5:0),1,100),
+  critique:seeded(key+"c",38,100),
+  avoidance:seeded(key+"v",30,100),
+  sensitivity:seeded(key+"s",16,94),
+  autonomyImpact:seeded(key+"u",20,100),
+  rant:floatSeed(key+"r",0.58,1.38),
+  profanity:floatSeed(key+"p",0.9,1.4),
+  cooldown:seeded(key+"d",4,26)
+ };
+}
+function buildEntries(){
+ const entries=[];
+ for(const section of DATA.sections){
+  const facets=section.kind==="interest"?DATA.interestFacets:DATA.dislikeFacets;
+  let local=0;
+  section.topics.forEach((topic,ti)=>facets.forEach((facet,fi)=>{
+   local++;
+   const id=`${section.id}.${String(ti+1).padStart(2,"0")}.${String(fi+1).padStart(2,"0")}`;
+   const typeWord=section.kind==="interest"?"interest":"dislike";
+   const desc=section.kind==="interest"
+    ?`${facet[1]} This card defines how “${topic}” should influence OMNIFRAME’s ${typeWord} model, references, analogies and creative behavior.`
+    :`${facet[1]} This card defines how OMNIFRAME should detect, criticize, avoid or redesign “${topic}.”`;
+   entries.push({id,sectionId:section.id,sectionName:section.name,kind:section.kind,topic,facet:facet[0],title:`${topic} — ${facet[0]}`,description:desc,defaultWeights:makeWeights(section,topic,facet,entries.length)});
+  }));
+ }
+ return entries;
+}
+const ENTRIES=buildEntries();
+const ENTRY_MAP=new Map(ENTRIES.map(e=>[e.id,e]));
+let filtered=[];
+let pageEntries=[];
+
+function decision(id){
+ if(!state.decisions[id]) state.decisions[id]={status:"undecided",weights:{},note:""};
+ return state.decisions[id];
+}
+function effectiveWeights(e){
+ return Object.assign({},e.defaultWeights,(state.decisions[e.id]||{}).weights||{});
+}
+function renderAvatar(){
+ $("#avatarAnchor").textContent=DATA.avatarAnchor;
+ $("#catAnchor").textContent=DATA.catAnchor;
+ $("#promptGrid").innerHTML=DATA.mediaPrompts.map((p,i)=>`
+  <article class="card prompt-card">
+   <div class="meta">${esc(p.type)} · ${String(i+1).padStart(2,"0")}</div>
+   <h3>${esc(p.title)}</h3>
+   <div class="prompt-body" id="prompt-${i}">${esc(p.prompt)}</div>
+   <button data-copy-prompt="${i}">Copy prompt</button>
+  </article>`).join("");
+}
+function renderConsumables(){
+ $("#consumableGrid").innerHTML=DATA.fictionalConsumables.map(x=>`
+  <article class="card consumable"><div class="meta">${esc(x.kind)}</div><h3>${esc(x.name)}</h3>
+  <p>${esc(x.effect)}</p><div class="small">Typical use: ${esc(x.use)}</div></article>`).join("");
+}
+function populateFilters(){
+ const sf=$("#sectionFilter");
+ sf.innerHTML=`<option value="all">All 20 sections</option>`+DATA.sections.map(s=>`<option value="${esc(s.id)}">${esc(s.name)} (500)</option>`).join("");
+ $("#search").value=state.filters.search;
+ $("#kindFilter").value=state.filters.kind;
+ sf.value=state.filters.section;
+ $("#statusFilter").value=state.filters.status;
+ $("#pageSize").value=String(state.filters.pageSize);
+}
+function filterEntries(){
+ const f=state.filters,q=(f.search||"").trim().toLowerCase();
+ filtered=ENTRIES.filter(e=>{
+  const d=state.decisions[e.id]?.status||"undecided";
+  return (f.kind==="all"||e.kind===f.kind)
+   &&(f.section==="all"||e.sectionId===f.section)
+   &&(f.status==="all"||d===f.status)
+   &&(!q||`${e.title} ${e.description} ${e.sectionName}`.toLowerCase().includes(q));
+ });
+ const maxPage=Math.max(1,Math.ceil(filtered.length/f.pageSize));
+ f.page=clamp(Number(f.page)||1,1,maxPage);
+ const start=(f.page-1)*f.pageSize;
+ pageEntries=filtered.slice(start,start+f.pageSize);
+ renderStats();
+ renderCards();
+ $("#pageLabel").textContent=`Page ${f.page} of ${maxPage} · ${filtered.length.toLocaleString()} matches`;
+ $("#prevPage").disabled=f.page<=1;
+ $("#nextPage").disabled=f.page>=maxPage;
+ saveState();
+}
+function renderStats(){
+ let a=0,r=0;
+ for(const d of Object.values(state.decisions)){if(d.status==="approved")a++;else if(d.status==="rejected")r++}
+ const u=ENTRIES.length-a-r;
+ $("#totalCount").textContent=ENTRIES.length.toLocaleString();
+ $("#approvedCount").textContent=a.toLocaleString();
+ $("#rejectedCount").textContent=r.toLocaleString();
+ $("#undecidedCount").textContent=u.toLocaleString();
+ $("#filteredCount").textContent=filtered.length.toLocaleString();
+ $("#progressBar").style.width=((a+r)/ENTRIES.length*100).toFixed(2)+"%";
+}
+function weightLabel(k){
+ return ({affinity:"Affinity",conversation:"Conversation",reference:"Reference",knowledge:"Knowledge",analogy:"Analogy",excitement:"Excitement ×",profanity:"Profanity ×",cooldown:"Cooldown",aversion:"Aversion",critique:"Critique",avoidance:"Avoidance",sensitivity:"Sensitivity",autonomyImpact:"Autonomy impact",rant:"Rant ×"})[k]||k;
+}
+function renderCards(){
+ const grid=$("#reviewGrid");
+ if(!pageEntries.length){grid.innerHTML=`<div class="card empty">No entries match the current filters.</div>`;return}
+ grid.innerHTML=pageEntries.map(e=>{
+  const d=state.decisions[e.id]||{status:"undecided",note:"",weights:{}};
+  const w=effectiveWeights(e);
+  const chips=Object.entries(w).slice(0,4).map(([k,v])=>`<span class="chip">${esc(weightLabel(k))}: ${esc(v)}</span>`).join("");
+  const weightInputs=Object.entries(w).map(([k,v])=>{
+   const isFloat=["excitement","profanity","rant"].includes(k);
+   return `<div class="weight"><label><span>${esc(weightLabel(k))}</span><b>${esc(v)}</b></label>
+    <input data-weight="${esc(k)}" data-id="${e.id}" type="number" value="${esc(v)}" min="${isFloat?"0":"1"}" max="${isFloat?"3":"100"}" step="${isFloat?"0.01":"1"}"></div>`;
+  }).join("");
+  return `<article class="card review-card ${esc(d.status==="approved"?"approved":d.status==="rejected"?"rejected":"")}" data-card-id="${e.id}" tabindex="0">
+   <div class="review-head"><div><div class="meta">${esc(e.kind)} · ${esc(e.sectionName)}</div><h3>${esc(e.title)}</h3></div><span class="index">${esc(e.id)}</span></div>
+   <div class="desc">${esc(e.description)}</div><div class="chips">${chips}</div>
+   <div class="card-actions">
+    <button class="good ${d.status==="approved"?"active":""}" data-decision="approved" data-id="${e.id}">Approve</button>
+    <button class="bad ${d.status==="rejected"?"active":""}" data-decision="rejected" data-id="${e.id}">Disapprove</button>
+    <button data-decision="undecided" data-id="${e.id}">Clear</button>
+   </div>
+   <details class="details"><summary>Edit weights and note</summary>
+    <div class="weight-grid">${weightInputs}</div>
+    <textarea class="note-input" data-note="${e.id}" placeholder="Optional reason, correction or implementation note…">${esc(d.note||"")}</textarea>
+   </details>
+  </article>`;
+ }).join("");
+}
+function setDecision(id,status){
+ const d=decision(id);d.status=status;saveState();filterEntries();
+}
+function setVisible(status){
+ pageEntries.forEach(e=>{const d=decision(e.id);d.status=status});
+ saveState();filterEntries();toast(`${pageEntries.length} visible cards updated.`);
+}
+function showTab(name){
+ $$(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+ $$(".panel").forEach(p=>p.classList.toggle("active",p.id===`panel-${name}`));
+ state.lastTab=name;saveState();
+}
+function renderCustom(){
+ const render=(items,target,kind)=>{$(target).innerHTML=items.length?items.map((x,i)=>`
+  <div class="custom-item"><div><b>${esc(x.title)}</b><p>${esc(x.note||"")}</p><span class="small">Added ${esc(new Date(x.addedAt).toLocaleString())}</span></div>
+  <button data-remove-custom="${kind}" data-index="${i}">Remove</button></div>`).join(""):`<div class="small">Nothing added yet.</div>`};
+ render(state.customLikes,"#customLikes","like");
+ render(state.customDislikes,"#customDislikes","dislike");
+ $("#scratchpad").value=state.scratchpad||"";
+}
+function addCustom(kind){
+ const isLike=kind==="like";
+ const title=$(isLike?"#customLikeTitle":"#customDislikeTitle").value.trim();
+ const note=$(isLike?"#customLikeNote":"#customDislikeNote").value.trim();
+ if(!title){toast("Enter a name first.");return}
+ const item={id:`custom-${kind}-${Date.now()}`,title,note,addedAt:new Date().toISOString(),weights:isLike?{affinity:100,conversation:75,reference:70,knowledge:65}:{aversion:100,critique:80,avoidance:90,sensitivity:70}};
+ (isLike?state.customLikes:state.customDislikes).unshift(item);
+ $(isLike?"#customLikeTitle":"#customDislikeTitle").value="";
+ $(isLike?"#customLikeNote":"#customDislikeNote").value="";
+ saveState();renderCustom();toast(`Custom ${kind} saved.`);
+}
+function serializeEntry(e){
+ const d=state.decisions[e.id]||{status:"undecided",note:"",weights:{}};
+ return {id:e.id,kind:e.kind,section:e.sectionName,topic:e.topic,facet:e.facet,title:e.title,status:d.status,note:d.note||"",weights:effectiveWeights(e)};
+}
+function baseExport(){
+ return {
+  schema:"omniframe-personality-bingo",
+  version:VERSION,
+  exportedAt:new Date().toISOString(),
+  developer:DATA.developer,
+  avatarPolicy:"No canonical biological body; use persistent 3D avatar shell.",
+  avatarAnchor:DATA.avatarAnchor,
+  catAnchor:DATA.catAnchor,
+  lockedCanon:DATA.lockedCanon,
+  customLikes:state.customLikes,
+  customDislikes:state.customDislikes,
+  scratchpad:state.scratchpad||""
+ };
+}
+function exportFull(){
+ const obj=Object.assign(baseExport(),{type:"full-review-backup",state,entries:ENTRIES.map(serializeEntry)});
+ download(`OmniFrame-personality-review-${dateStamp()}.json`,JSON.stringify(obj,null,2));
+}
+function exportApproved(){
+ const approved=ENTRIES.filter(e=>(state.decisions[e.id]?.status||"undecided")==="approved").map(serializeEntry);
+ const retainedDislikes=approved.filter(x=>x.kind==="dislike");
+ const retainedInterests=approved.filter(x=>x.kind==="interest");
+ const obj=Object.assign(baseExport(),{
+  type:"culled-personality-bible",
+  policy:{
+   approvedInterest:"Retain as an OMNIFRAME interest.",
+   approvedDislike:"Retain as an OMNIFRAME dislike or criticism trigger.",
+   undecided:"Not yet reviewed; do not treat as final canon.",
+   rejected:"Excluded from this file."
+  },
+  approvedInterests:retainedInterests,
+  approvedDislikes:retainedDislikes,
+  summary:{approvedInterests:retainedInterests.length,approvedDislikes:retainedDislikes.length,customLikes:state.customLikes.length,customDislikes:state.customDislikes.length}
+ });
+ download(`OmniFrame-culled-personality-${dateStamp()}.json`,JSON.stringify(obj,null,2));
+}
+function exportRejected(){
+ const rejected=ENTRIES.filter(e=>(state.decisions[e.id]?.status||"undecided")==="rejected").map(serializeEntry);
+ download(`OmniFrame-rejections-${dateStamp()}.json`,JSON.stringify(Object.assign(baseExport(),{type:"rejection-report",rejected}),null,2));
+}
+function exportMarkdown(){
+ const approved=ENTRIES.filter(e=>state.decisions[e.id]?.status==="approved").map(serializeEntry);
+ const rejected=ENTRIES.filter(e=>state.decisions[e.id]?.status==="rejected").map(serializeEntry);
+ let md=`# OMNIFRAME Personality Culling Report\n\nExported: ${new Date().toISOString()}\n\n`;
+ md+=`## Locked source canon\n\nSpotify and YouTube reference datasets remain automatically approved and are excluded from card review.\n\n`;
+ md+=`## Approved (${approved.length})\n\n`+approved.map(x=>`- **${x.title}** — ${x.section}${x.note?` — ${x.note}`:""}`).join("\n");
+ md+=`\n\n## Disapproved (${rejected.length})\n\n`+rejected.map(x=>`- **${x.title}** — ${x.section}${x.note?` — ${x.note}`:""}`).join("\n");
+ md+=`\n\n## Custom likes\n\n`+state.customLikes.map(x=>`- **${x.title}**${x.note?` — ${x.note}`:""}`).join("\n");
+ md+=`\n\n## Custom dislikes\n\n`+state.customDislikes.map(x=>`- **${x.title}**${x.note?` — ${x.note}`:""}`).join("\n");
+ md+=`\n\n## Scratchpad\n\n${state.scratchpad||""}\n`;
+ download(`OmniFrame-personality-report-${dateStamp()}.md`,md,"text/markdown");
+}
+function dateStamp(){return new Date().toISOString().slice(0,10)}
+function randomUndecided(){
+ const pool=ENTRIES.filter(e=>(state.decisions[e.id]?.status||"undecided")==="undecided");
+ if(!pool.length){toast("No undecided cards remain.");return}
+ const e=pool[Math.floor(Math.random()*pool.length)];
+ state.filters.kind="all";state.filters.section=e.sectionId;state.filters.status="undecided";state.filters.search=e.topic;
+ state.filters.page=1;populateFilters();filterEntries();showTab("review");
+ setTimeout(()=>document.querySelector(`[data-card-id="${e.id}"]`)?.scrollIntoView({behavior:"smooth",block:"center"}),60);
+}
+function importData(file){
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const obj=JSON.parse(reader.result);
+   if(obj.state) state=Object.assign(defaultState(),obj.state,{filters:Object.assign(defaultState().filters,obj.state.filters||{})});
+   else{
+    const next=defaultState();
+    for(const group of [obj.approvedInterests||[],obj.approvedDislikes||[],obj.rejected||[],obj.entries||[]]){
+     for(const x of group){
+      if(!ENTRY_MAP.has(x.id))continue;
+      next.decisions[x.id]={status:x.status||((obj.rejected||[]).includes(x)?"rejected":"approved"),note:x.note||"",weights:x.weights||{}};
+     }
+    }
+    next.customLikes=obj.customLikes||[];next.customDislikes=obj.customDislikes||[];next.scratchpad=obj.scratchpad||"";
+    state=next;
+   }
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+   populateFilters();renderCustom();filterEntries();showTab(state.lastTab||"review");toast("Review imported.");
+  }catch(e){toast("That file is not a valid OMNIFRAME review JSON.");}
+ };
+ reader.readAsText(file);
+}
+function resetAll(){
+ localStorage.removeItem(STORAGE_KEY);state=defaultState();populateFilters();renderCustom();filterEntries();$("#confirmDialog").close();showTab("avatar");toast("Local review reset.");
+}
+
+document.addEventListener("click",e=>{
+ const tab=e.target.closest("[data-tab]");if(tab){showTab(tab.dataset.tab);return}
+ const cp=e.target.closest("[data-copy-target]");if(cp){copyText($("#"+cp.dataset.copyTarget).textContent);return}
+ const pp=e.target.closest("[data-copy-prompt]");if(pp){const p=DATA.mediaPrompts[Number(pp.dataset.copyPrompt)];copyText(DATA.avatarAnchor+"\n\n"+(p.type==="Cat sheet"?DATA.catAnchor+"\n\n":"")+p.prompt);return}
+ const dec=e.target.closest("[data-decision]");if(dec){setDecision(dec.dataset.id,dec.dataset.decision);return}
+ const remove=e.target.closest("[data-remove-custom]");if(remove){
+  const arr=remove.dataset.removeCustom==="like"?state.customLikes:state.customDislikes;arr.splice(Number(remove.dataset.index),1);saveState();renderCustom();return
+ }
+ const action=e.target.closest("[data-action]")?.dataset.action;
+ if(!action)return;
+ ({
+  "approve-visible":()=>setVisible("approved"),"reject-visible":()=>setVisible("rejected"),"clear-visible":()=>setVisible("undecided"),
+  "random":randomUndecided,"add-like":()=>addCustom("like"),"add-dislike":()=>addCustom("dislike"),
+  "export-full":exportFull,"export-approved":exportApproved,"export-rejected":exportRejected,"export-markdown":exportMarkdown,
+  "import":()=>$("#importFile").click(),"reset":()=>$("#confirmDialog").showModal(),
+  "close-dialog":()=>$("#confirmDialog").close(),"confirm-reset":resetAll
+ })[action]?.();
+});
+document.addEventListener("change",e=>{
+ if(e.target.matches("[data-weight]")){
+  const d=decision(e.target.dataset.id);const k=e.target.dataset.weight;d.weights[k]=Number(e.target.value);saveState();
+  e.target.closest(".weight").querySelector("b").textContent=e.target.value;return;
+ }
+ if(e.target=== $("#kindFilter")){state.filters.kind=e.target.value;state.filters.page=1;filterEntries()}
+ if(e.target=== $("#sectionFilter")){state.filters.section=e.target.value;state.filters.page=1;filterEntries()}
+ if(e.target=== $("#statusFilter")){state.filters.status=e.target.value;state.filters.page=1;filterEntries()}
+ if(e.target=== $("#pageSize")){state.filters.pageSize=Number(e.target.value);state.filters.page=1;filterEntries()}
+ if(e.target=== $("#importFile")&&e.target.files[0]){importData(e.target.files[0]);e.target.value=""}
+});
+document.addEventListener("input",e=>{
+ if(e.target=== $("#search")){state.filters.search=e.target.value;state.filters.page=1;clearTimeout(window._searchT);window._searchT=setTimeout(filterEntries,120)}
+ if(e.target.matches("[data-note]")){decision(e.target.dataset.note).note=e.target.value;saveState()}
+ if(e.target=== $("#scratchpad")){state.scratchpad=e.target.value;saveState()}
+});
+$("#prevPage").addEventListener("click",()=>{state.filters.page--;filterEntries();scrollTo({top:$("#panel-review").offsetTop-75,behavior:"smooth"})});
+$("#nextPage").addEventListener("click",()=>{state.filters.page++;filterEntries();scrollTo({top:$("#panel-review").offsetTop-75,behavior:"smooth"})});
+document.addEventListener("keydown",e=>{
+ if(!e.target.closest(".review-card")||["INPUT","TEXTAREA"].includes(e.target.tagName))return;
+ const id=e.target.closest(".review-card").dataset.cardId;
+ if(e.key.toLowerCase()==="a")setDecision(id,"approved");
+ if(e.key.toLowerCase()==="d")setDecision(id,"rejected");
+ if(e.key.toLowerCase()==="u")setDecision(id,"undecided");
+});
+
+renderAvatar();
+renderConsumables();
+populateFilters();
+renderCustom();
+filterEntries();
+showTab(state.lastTab||"avatar");
+</script>
+</body>
+</html>
