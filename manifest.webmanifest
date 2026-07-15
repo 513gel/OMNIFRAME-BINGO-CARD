@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "OMNIFRAME Preference Review v3.1",
+  "name": "OMNIFRAME Preference Review v3.2",
   "short_name": "OMNIFRAME",
-  "description": "A 2,500-subject franchise-level preference review with four-direction swiping, confirmation, Wikipedia and Fandom research links, notes, history, and undo.",
+  "description": "Simplified mockup-based review with a large subject swipe card, description, editable note, immediate choices, undo, history, research links, and exports.",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",

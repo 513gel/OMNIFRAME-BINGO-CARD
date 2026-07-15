@@ -1,33 +1,34 @@
-# OMNIFRAME Preference Review v3.1
+# OMNIFRAME Preference Review v3.2
 
-This update adds external research links without changing the v3 storage key or the 2,500-subject catalog.
+The review page now follows the second paper mockup.
 
-## Research links on every subject
+## Review page order
 
-Each review card now includes:
+1. Header
+2. Thin subject strip
+3. Large subject swipe card
+4. Subject description and research links
+5. Editable text box
+6. Like, Neutral, Dislike, and Don't know
+7. Later, Undo last, Save note, and progress
+8. Browse, History, Add, Export, Install, and category controls underneath
 
-- **Search Wikipedia** — opens an English Wikipedia search for the subject with a category-specific qualifier.
-- **Search Fandom** — shown for games, anime, films, television, comics, tabletop subjects, creators, and studios. It opens a cross-wiki Fandom search.
-- **Search the web** — provides a fallback when neither wiki has a useful page.
+## Removed
 
-The app uses search pages instead of inventing exact article URLs. This avoids sending the user to the wrong page when a franchise name is ambiguous or no dedicated article exists.
+- No instructional choice panel
+- No confirmation popup
+- No fixed button dock covering content
 
-All links:
+Buttons and swipes save immediately and advance. The note is saved before every choice. Undo and full history remain available.
 
-- open in a new tab;
-- use `noopener noreferrer`;
-- save the current note before opening;
-- leave the current subject selected;
-- do not make a decision automatically.
+## Deploy
 
-## Upgrade
-
-1. Export a Full Backup from v3.0.
+1. Export a Full Backup from v3.1.
 2. Extract this ZIP.
 3. Replace every file in the existing GitHub repository.
 4. Commit to `main`.
-5. Wait for GitHub Pages deployment.
+5. Wait for GitHub Pages to deploy.
 6. Close old tabs.
-7. Reopen the same site with `?v=3.1` appended once.
+7. Open the site once with `?v=3.2` appended.
 
-The storage key remains `omniframe.preference-review.v3`, so v3.0 decisions, notes, history, custom subjects, and progress remain compatible.
+The v3 storage key is unchanged, so existing v3 choices, notes, history, and progress remain compatible.

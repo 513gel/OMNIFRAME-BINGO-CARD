@@ -1,21 +1,12 @@
-OMNIFRAME PREFERENCE REVIEW v3.1
+OMNIFRAME PREFERENCE REVIEW v3.2
 
-UPDATE
-1. Export a Full Backup from v3.0.
+1. Export a Full Backup from v3.1.
 2. Extract this ZIP.
-3. Upload every file and folder to the root of the existing GitHub repository.
-4. Replace the previous files.
-5. Commit to main.
-6. Wait for GitHub Pages to deploy.
-7. Close all old tabs.
-8. Open the Pages URL with ?v=3.1 appended once.
+3. Upload every file and folder to the repository root.
+4. Replace the previous files and commit to main.
+5. Reopen the Pages URL with ?v=3.2 appended once.
 
 EXPECTED HEADER
-v3.1 · research links · 2,500 subjects
+v3.2 · simplified swipe layout
 
-EACH SUBJECT NOW HAS
-- Search Wikipedia
-- Search Fandom when relevant
-- Search the web
-
-The links open in a new tab and preserve the current note and subject.
+There is no confirmation popup. Swipes and buttons save immediately.
