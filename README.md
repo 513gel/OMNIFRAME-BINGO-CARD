@@ -1,30 +1,33 @@
-# OMNIFRAME Preference Review v2.1
+# OMNIFRAME Preference Review v3.1
 
-This interface follows the supplied paper sketch.
+This update adds external research links without changing the v3 storage key or the 2,500-subject catalog.
 
-## Main review screen
+## Research links on every subject
 
-1. Header and menu
-2. Category selector
-3. Subject selector
-4. Later and Undo controls
-5. Large description and decision-information panel
-6. Large note box
-7. Fixed Like, Neutral, and Dislike controls
-8. Fixed progress bar
+Each review card now includes:
 
-Browse, Add, Export, Install, Import, Reset, and Help are behind the header menu.
+- **Search Wikipedia** — opens an English Wikipedia search for the subject with a category-specific qualifier.
+- **Search Fandom** — shown for games, anime, films, television, comics, tabletop subjects, creators, and studios. It opens a cross-wiki Fandom search.
+- **Search the web** — provides a fallback when neither wiki has a useful page.
 
-## Update GitHub Pages
+The app uses search pages instead of inventing exact article URLs. This avoids sending the user to the wrong page when a franchise name is ambiguous or no dedicated article exists.
 
-1. Export a full backup from the current v2 site.
+All links:
+
+- open in a new tab;
+- use `noopener noreferrer`;
+- save the current note before opening;
+- leave the current subject selected;
+- do not make a decision automatically.
+
+## Upgrade
+
+1. Export a Full Backup from v3.0.
 2. Extract this ZIP.
 3. Replace every file in the existing GitHub repository.
 4. Commit to `main`.
-5. Wait for Pages to deploy.
+5. Wait for GitHub Pages deployment.
 6. Close old tabs.
-7. Open the same URL once with `?v=2.1` appended.
+7. Reopen the same site with `?v=3.1` appended once.
 
-Expected subtitle: `v2.1 · sketch layout`.
-
-The storage key stays compatible with v2.0.
+The storage key remains `omniframe.preference-review.v3`, so v3.0 decisions, notes, history, custom subjects, and progress remain compatible.
