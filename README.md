@@ -1,34 +1,56 @@
-# OMNIFRAME Preference Review v3.2
+# OMNIFRAME Memory Review v4.0
 
-The review page now follows the second paper mockup.
+This is a major semantic and catalog update.
 
-## Review page order
+## Decision meanings
 
-1. Header
-2. Thin subject strip
-3. Large subject swipe card
-4. Subject description and research links
-5. Editable text box
-6. Like, Neutral, Dislike, and Don't know
-7. Later, Undo last, Save note, and progress
-8. Browse, History, Add, Export, Install, and category controls underneath
+- **Important** — retain and prioritize as meaningful personality or knowledge context.
+- **Neutral** — remember it, but do not attach strong feelings or spontaneous recommendation behavior.
+- **Not important** — safe to omit or forget from routine personality memory. This is not dislike.
+- **I don't know** — keep it in the research queue until more information is available.
 
-## Removed
+## Catalog
 
-- No instructional choice panel
-- No confirmation popup
-- No fixed button dock covering content
+Total subjects: **4,811**
 
-Buttons and swipes save immediately and advance. The note is saved before every choice. Undo and full history remain available.
+- Video Games: 900 total; 200 in the Popular 200 reference set
+- Movies: 495 total; 200 in the Popular 200 reference set
+- TV Shows: 230 total; 200 in the Popular 200 reference set
+- Cartoons: 228 total; 200 in the Popular 200 reference set
+- Anime: 477 total; 200 in the Popular 200 reference set
+- Manga: 242 total; 200 in the Popular 200 reference set
+- Art Styles: 290 total; 200 in the Popular 200 reference set
+- Architecture: 258 total; 200 in the Popular 200 reference set
+- Software & Technology: 308 total; 200 in the Popular 200 reference set
+- Music & Audio: 255 total; 200 in the Popular 200 reference set
+- Books, Comics & Tabletop: 260 total; 200 in the Popular 200 reference set
+- Creators & Studios: 273 total; 200 in the Popular 200 reference set
+- Activities & Atmosphere: 283 total; 200 in the Popular 200 reference set
+- Behavior & Practices: 312 total; 200 in the Popular 200 reference set
+
+Every category retains the prior extrapolated list and includes a 200-item curated mainstream reference set. The Popular 200 is a practical starting set, not an objective universal ranking.
+
+Video games remain one card per game or franchise and can be filtered by genre without duplicating decisions. Movies, live-action TV shows, western cartoons, anime, manga, art styles, and architecture are separate categories.
+
+Art Styles and Architecture include a **Google Images** button so the user can visually inspect the style before choosing.
+
+## Upgrade from v3
+
+The app uses a new v4 storage key and reads v3 data once on first launch:
+
+- Like → Important
+- Neutral → Neutral
+- Dislike → Not important
+- Don't know → I don't know
+
+The old v3 storage is not deleted and is preserved in the v4 migration record.
 
 ## Deploy
 
-1. Export a Full Backup from v3.1.
+1. Export a Full Backup from v3.2.
 2. Extract this ZIP.
 3. Replace every file in the existing GitHub repository.
 4. Commit to `main`.
 5. Wait for GitHub Pages to deploy.
 6. Close old tabs.
-7. Open the site once with `?v=3.2` appended.
-
-The v3 storage key is unchanged, so existing v3 choices, notes, history, and progress remain compatible.
+7. Open the Pages URL once with `?v=4.0` appended.

@@ -1,13 +1,13 @@
 {
   "id": "./",
-  "name": "OMNIFRAME Preference Review v3.2",
+  "name": "OMNIFRAME Memory Review v4.0",
   "short_name": "OMNIFRAME",
-  "description": "Simplified mockup-based review with a large subject swipe card, description, editable note, immediate choices, undo, history, research links, and exports.",
+  "description": "Expanded popular-200 and extrapolated memory-priority review with Important, Neutral, Not important, I do not know, game genre filters, visual image search, notes, history, export, and offline PWA support.",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
   "background_color": "#07090c",
-  "theme_color": "#090b0f",
+  "theme_color": "#080a0e",
   "orientation": "portrait-primary",
   "categories": [
     "productivity",
@@ -32,41 +32,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Review preferences",
-      "short_name": "Review",
-      "url": "./?screen=review",
-      "icons": [
-        {
-          "src": "./icons/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Decision history",
-      "short_name": "History",
-      "url": "./?screen=history",
-      "icons": [
-        {
-          "src": "./icons/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Export results",
-      "short_name": "Export",
-      "url": "./?screen=export",
-      "icons": [
-        {
-          "src": "./icons/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
     }
   ]
 }

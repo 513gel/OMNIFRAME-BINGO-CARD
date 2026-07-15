@@ -1,0 +1,60 @@
+{
+  "version": "4.0",
+  "total": 4811,
+  "categories": {
+    "Video Games": 900,
+    "Movies": 495,
+    "TV Shows": 230,
+    "Cartoons": 228,
+    "Anime": 477,
+    "Manga": 242,
+    "Art Styles": 290,
+    "Architecture": 258,
+    "Software & Technology": 308,
+    "Music & Audio": 255,
+    "Books, Comics & Tabletop": 260,
+    "Creators & Studios": 273,
+    "Activities & Atmosphere": 283,
+    "Behavior & Practices": 312
+  },
+  "popular_200_counts": {
+    "Video Games": 200,
+    "Movies": 200,
+    "TV Shows": 200,
+    "Cartoons": 200,
+    "Anime": 200,
+    "Manga": 200,
+    "Art Styles": 200,
+    "Architecture": 200,
+    "Software & Technology": 200,
+    "Music & Audio": 200,
+    "Books, Comics & Tabletop": 200,
+    "Creators & Studios": 200,
+    "Activities & Atmosphere": 200,
+    "Behavior & Practices": 200
+  },
+  "decision_model": {
+    "important": "retain and prioritize",
+    "neutral": "remember without strong feelings",
+    "not_important": "safe to omit or forget",
+    "unknown": "research before deciding"
+  },
+  "popular_set_note": "Curated mainstream reference set, not an objective universal ranking. Guided by broad public recognition indicators and deduplicated into practical subjects.",
+  "game_genres": [
+    "Action",
+    "Fighting",
+    "Horror",
+    "Indie & Narrative",
+    "Mechs & Machines",
+    "Online & Co-op",
+    "Other",
+    "Platformer",
+    "RPG",
+    "Racing",
+    "Sandbox & Survival",
+    "Shooter",
+    "Simulation",
+    "Sports",
+    "Strategy"
+  ]
+}
